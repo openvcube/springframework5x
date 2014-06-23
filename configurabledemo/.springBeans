@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[2.3.0.200912170948-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/config.xml</config>
+		<config>src/configautowiring.xml</config>
+		<config>src/ltw.xml</config>
+		<config>src/springconfigured.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
