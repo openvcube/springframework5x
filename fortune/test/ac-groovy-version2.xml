@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:lang="http://www.springframework.org/schema/lang"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+                           http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-2.5.xsd">
+
+    <bean id="fortune1" class="org.springframework.showcase.fortune.domain.Fortune">
+    	<property name="source" value="Larry Wall" />
+    	<property name="fortune" value="In general, if you think something isn't in Perl, try it out, because it usually is." />
+    </bean>
+    
+    <bean id="fortune2" class="org.springframework.showcase.fortune.domain.Fortune">
+    	<property name="source" value="Rob Harrop" />
+    	<property name="fortune" value="Rob Harrop is always right. Remember that and you will go far." />
+    </bean>
+    
+    <bean id="controller" class="org.springframework.scripting.groovy.GroovyScriptFactory">
+    	<constructor-arg>
+    		<value>inline:
+				package org.springframework.showcase.fortune.web;
+				
+				import org.springframework.showcase.fortune.service.FortuneService;
+				import org.springframework.showcase.fortune.domain.Fortune;
+				import org.springframework.web.servlet.ModelAndView;
+				import org.springframework.web.servlet.mvc.Controller;
+				
+				import javax.servlet.http.HttpServletRequest;
+				import javax.servlet.http.HttpServletResponse;
+				
+				public class FortuneController implements Controller {
+				
+				    @Property Fortune fortune1
+				
+				    @Property Fortune fortune2
+				
+				    public ModelAndView handleRequest(
+				            HttpServletRequest request, HttpServletResponse httpServletResponse) {
+				        return new ModelAndView("tell", "fortune", this.fortune1)
+				    }
+				
+				}
+		</value>
+	</constructor-arg>
+    	<property name="fortune1" ref="fortune1" />
+    	<property name="fortune2" ref="fortune2" />
+    </bean>
+    
+    <bean class="org.springframework.scripting.support.ScriptFactoryPostProcessor">
+    	<property name="defaultRefreshCheckDelay" value="3000" />
+    </bean>
+    
+</beans>

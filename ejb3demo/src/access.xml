@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">			
+
+	<bean id="sbe" 
+		class="org.springframework.ejb.access.SimpleRemoteStatelessSessionProxyFactoryBean">
+		<property name="jndiName">
+	    	<value>SBusinessExampleEjb30/remote</value>
+		</property>
+		<property name="businessInterface" value="test.ejb3.IBusinessInterface"/>
+		<property name="jndiEnvironment">
+			<props>
+				<prop key="java.naming.factory.initial">
+					org.jnp.interfaces.NamingContextFactory
+				</prop>
+				<prop key="java.naming.provider.url">
+					jnp://localhost:1099
+				</prop>
+				<prop key="java.naming.factory.url.pkgs">
+					org.jboss.naming:org.jnp.interfaces
+				</prop>
+			</props>
+		</property>
+	</bean>
+		
+</beans>

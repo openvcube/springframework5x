@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="mail.longtop.com"/>
+	<!--  
+		<property name="username" value="test"/>
+		<property name="password" value="mamama"/>
+		-->
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.debug">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="mailMessage"
+		class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="test@open-v.com"/>
+		<property name="text" value="谢谢您的到来!"/>
+		<property name="subject" value="欢迎使用Spring JavaMail集成"/>
+		<property name="to" value="chengyi_zhu@longtop.com"/>
+	</bean>
+	
+</beans>

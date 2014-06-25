@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="resourceAdapterFactoryBean" 
+		class="org.springframework.jca.support.ResourceAdapterFactoryBean">
+		<property name="resourceAdapter" ref="springContextResourceAdapter"/>
+	</bean>
+	
+	<bean id="springContextResourceAdapter" 
+		class="org.springframework.jca.context.SpringContextResourceAdapter">
+		<property name="contextConfigLocation" value="scra.xml"/>
+	</bean>
+
+</beans>

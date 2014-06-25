@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+									http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<bean id="abstractCollectionBean" abstract="true">
+		<property name="map">
+			<map>
+				<entry key="mapKey1" value="mapValue1"/>
+				<entry key="mapKey2" value="mapValue2"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="collectionBean" class="test.CollectionBean" 
+			parent="abstractCollectionBean">
+		<property name="map">
+			<map merge="true" key-type="java.lang.String" value-type="java.lang.String">
+				<entry key="mapKey1" value="mapValue1Override"/>
+				<entry>
+					<key><value>mapKey2</value></key>
+					<value>mapValue2</value>
+				</entry>
+				<entry key="testBean" value-ref="testBean"/>
+			</map>
+		</property>
+	</bean>
+		
+	<bean id="testBean" class="test.TestBean"/>
+	
+	<bean id="collectionBean1" class="test.CollectionBean">
+		<property name="mapTyped">
+			<map>
+				<entry key="mapKey1" value="10.1"/>
+				<entry>
+					<key><value>mapKey2</value></key>
+					<value>20</value>					
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="map" class="org.springframework.beans.factory.config.MapFactoryBean">
+		<property name="targetMapClass" value="java.util.HashMap"/>
+		<property name="sourceMap">
+			<map>
+				<entry key="1" value="first"/>
+				<entry key="2" value="second"/>
+				<entry key="3" value="three"/>
+				<entry key="4" value="four"/>
+			</map>
+		</property>
+	</bean>
+	
+	<util:map id="mapUtil" map-class="java.util.HashMap">
+		<entry key="1" value="first"/>
+		<entry key="2" value="second"/>
+		<entry key="3" value="three"/>
+		<entry key="4" value="four"/>
+	</util:map>
+	
+</beans>

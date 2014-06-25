@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project name="ejb3demo" default="ejb3jar" basedir=".">
+	<property name="ejb3jar.file" value="ejb3jardemo.jar"></property>
+	<property name="springjar.dir" value="./lib"/>
+
+	<target name="ejb3jar">
+		<delete file="ejb3demo/${ejb3jar.file}" />
+		<jar jarfile="${ejb3jar.file}">
+			<fileset dir="./bin">
+				<include  name="**/BusinessImpl.class"/>
+				<include  name="**/IBusinessInterface.class"/>
+				<include  name="**/SBusinessExampleEjb30.class"/>
+				<include  name="appcontext.xml"/>
+				<include  name="beanRefContext.xml"/>
+			</fileset>
+		</jar>
+	</target>
+
+</project>

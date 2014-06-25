@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2008-5-8 14:10:15 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="org.springframework.samples.Visits" table="VISITS">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="pets" class="org.springframework.samples.Pets" fetch="select">
+            <column name="PET_ID" not-null="true" />
+        </many-to-one>
+        <property name="visitDate" type="date">
+            <column name="VISIT_DATE" length="0" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" />
+        </property>
+    </class>
+</hibernate-mapping>

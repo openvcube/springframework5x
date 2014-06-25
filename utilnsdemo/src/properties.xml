@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+									http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<bean id="abstractCollectionBean" abstract="true">
+		<property name="properties">
+			<props>
+				<prop key="propKey1">propValue1</prop>
+				<prop key="propKey2">propValue2</prop>
+				<prop key="propKey3">propValue3</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="collectionBean" class="test.CollectionBean" 
+			parent="abstractCollectionBean">
+		<property name="properties">
+			<props merge="true">
+				<prop key="propKey1">propValue1Override</prop>
+				<prop key="propKey4">propValue4</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="properties" 
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="propKey1">propValue1</prop>
+				<prop key="propKey2">propValue2</prop>
+				<prop key="propKey3">propValue3</prop>
+			</props>
+		</property>
+	</bean>
+		
+	<bean id="commonsLogging" 
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location" value="classpath:commons-logging.properties"/>
+	</bean>
+	
+	<util:properties id="commonsLoggingProperties" 
+		location="classpath:commons-logging.properties"/>
+		
+</beans>

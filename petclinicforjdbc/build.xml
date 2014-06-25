@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project name="jpetstorefortxadvice" default="compile">
+			
+	<target name="compile">
+		
+		  <taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+		    <classpath>
+		      <pathelement location="D:/aspectj1.6/lib/aspectjtools.jar"/>
+		    </classpath>
+		  </taskdef>
+		
+		<delete dir="dest"/>
+		<mkdir dir="dest"/>
+		
+		<iajc destdir="dest" source="1.6" aspectpath="lib/spring-aspects.jar">
+			<sourceroots>
+					<pathelement location="test/test" />
+			</sourceroots>
+			<classpath>
+				   <pathelement location="context/WEB-INF/lib/commons-logging.jar"/>
+	  			   <pathelement location="context/WEB-INF/lib/log4j-1.2.15.jar"/>
+				   <pathelement location="context/WEB-INF/lib/spring.jar"/>
+				   <pathelement location="D:/aspectj1.6/lib/aspectjrt.jar"/>
+			</classpath>
+		</iajc>
+		
+		<copy todir="dest"  file="src/log4j.properties"/>
+		<copy todir="dest" file="src/commons-logging.properties"/>
+		<copy todir="dest/test" file="test/ata.xml"/>
+		
+	</target>
+
+</project>

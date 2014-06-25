@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" output="bin" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/activation.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-collections.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-fileupload.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-io.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/freemarker.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/spring.jar" sourcepath="/spring"/>
+	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="lib/commonj-twm.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-lang.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/jta.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/spring-webmvc.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/velocity-1.5.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/ojdbc6.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/quartz-all-1.6.1-RC1.jar"/>
+	<classpathentry kind="lib" path="lib/connector.jar"/>
+	<classpathentry kind="lib" path="lib/backport-util-concurrent.jar"/>
+	<classpathentry kind="output" path="context/WEB-INF/classes"/>
+</classpath>

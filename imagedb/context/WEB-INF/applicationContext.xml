@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context 
+					http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx 
+					http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:property-placeholder 
+		location="WEB-INF/jdbc.properties,WEB-INF/mail.properties"/>
+
+	<bean id="dataSource" 
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClassName}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+	<bean id="transactionManager" 
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="dataSource"/>
+
+	<tx:annotation-driven/>
+
+	<bean id="imageDatabase" 
+		class="org.springframework.samples.imagedb.DefaultImageDatabase"
+		p:dataSource-ref="dataSource" p:lobHandler-ref="defaultLobHandler"/>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="${mail.host}"/>
+	</bean>
+
+	<bean id="defaultLobHandler" 
+		class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true"/>
+
+	<bean id="oracleLobHandler" 
+		class="org.springframework.jdbc.support.lob.OracleLobHandler" lazy-init="true"
+		p:nativeJdbcExtractor-ref="nativeJdbcExtractor"/>
+
+	<bean id="nativeJdbcExtractor" 
+		class="org.springframework.jdbc.support.nativejdbc.C3P0NativeJdbcExtractor"
+			lazy-init="true"/>
+
+</beans>

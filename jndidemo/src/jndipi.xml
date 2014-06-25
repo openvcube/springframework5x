@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="tq"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<!--  指定JNDI环境 -->
+		<property name="jndiEnvironment">
+			<props>
+				<prop key="java.naming.factory.initial">
+					org.jnp.interfaces.NamingContextFactory
+				</prop>
+				<prop key="java.naming.provider.url">
+					jnp://localhost:1099
+				</prop>
+				<prop key="java.naming.factory.url.pkgs">
+					org.jboss.naming:org.jnp.interfaces
+				</prop>
+			</props>
+		</property>
+		<!--  指定JNDI名字 -->
+		<property name="jndiName" value="queue/testQueue"/>
+		<!--  是否缓存查找到的Java对象 -->
+		<property name="cache" value="false"/>
+		<!--  启动时是否去JNDI树查找目标资源(即，由jndiName指定的) -->
+		<property name="lookupOnStartup" value="true"/>
+		<!-- 指定代理接口 -->
+		<property name="proxyInterface" value="javax.jms.Queue"/>
+	</bean>
+
+</beans>

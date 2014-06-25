@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       					http://www.springframework.org/schema/beans/spring-beans-2.5.xsd        		
+				http://www.springframework.org/schema/jee 
+						http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">	
+
+	<jee:remote-slsb  id="sbe"
+			jndi-name="SBusinessExampleEjb30/remote"
+			business-interface="test.ejb3.IBusinessInterface" 
+			cache-home="false"  			
+			lookup-home-on-startup="false" 
+			refresh-home-on-connect-failure="true">
+			<jee:environment>
+				java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+				java.naming.provider.url=jnp://localhost:1099
+				java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+			</jee:environment>
+	</jee:remote-slsb>
+		
+</beans>

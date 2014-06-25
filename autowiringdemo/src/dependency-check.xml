@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="testBean" class="test.TestBean" dependency-check="objects">
+		<property name="hw1" ref="helloWorld"/>
+		<property name="hw2">
+			<null/>	
+		</property>
+		<property name="str">
+			<value/>
+		</property>
+	</bean>
+	
+	<bean id="helloWorld" class="test.HelloWorld"/>
+	
+</beans>

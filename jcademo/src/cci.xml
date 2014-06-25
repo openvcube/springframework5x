@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	   		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="managedConnectionFactory" 
+		class="com.sun.connector.cciblackbox.CciLocalTxManagedConnectionFactory">
+		<property name="connectionURL" value="jdbc:oracle:thin:@localhost:1521:ORCL"/>
+		<property name="driverName" value="oracle.jdbc.OracleDriver"/>
+	</bean>
+
+	<bean id="targetConnectionFactory" 
+		class="org.springframework.jca.support.LocalConnectionFactoryBean">
+		<property name="managedConnectionFactory" ref="managedConnectionFactory"/>
+	</bean>
+
+	<bean id="connectionFactory" 
+		class="org.springframework.jca.cci.connection.ConnectionSpecConnectionFactoryAdapter">
+     <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
+     <property name="connectionSpec">
+       <bean class="com.sun.connector.cciblackbox.CciConnectionSpec">
+         <property name="user" value="scott"/>
+         <property name="password" value="password"/>
+       </bean>
+     </property>
+    </bean>
+
+	<bean id="personDao" 
+		class="org.springframework.samples.jca.dao.PersonDaoImpl"
+		p:connectionFactory-ref="connectionFactory"/>
+
+	<bean id="transactionManager" 
+		class="org.springframework.jca.cci.connection.CciLocalTransactionManager"
+		p:connectionFactory-ref="connectionFactory"/>
+
+	<bean id="personServiceTarget" 
+		class="org.springframework.samples.jca.service.PersonServiceImpl"
+		p:personDao-ref="personDao"/>
+
+	<bean id="personService" 
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager" ref="transactionManager"/>
+		<property name="target" ref="personServiceTarget"/>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="insert*">PROPAGATION_REQUIRED</prop>
+				<prop key="update*">PROPAGATION_REQUIRED</prop>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+</beans>

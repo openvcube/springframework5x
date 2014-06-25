@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation=
+       		"http://www.springframework.org/schema/beans 
+       			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			  http://www.springframework.org/schema/jee 
+			    http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+	<jee:jndi-lookup id="connectionFactory" jndi-name="ConnectionFactory">
+			<jee:environment >
+				java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+				java.naming.provider.url=jnp://localhost:1099
+				java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+			</jee:environment>
+	</jee:jndi-lookup>
+
+	<jee:jndi-lookup id="destination" jndi-name="queue/testQueue">
+			<jee:environment >
+				java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+				java.naming.provider.url=jnp://localhost:1099
+				java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+			</jee:environment>
+	</jee:jndi-lookup>
+
+	<jee:jndi-lookup id="destinationA" jndi-name="queue/A">
+			<jee:environment >
+				java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+				java.naming.provider.url=jnp://localhost:1099
+				java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+			</jee:environment>
+	</jee:jndi-lookup>
+
+	<bean class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+		<property name="autoStartup" value="true"/>
+		<property name="concurrentConsumers" value="10"/>
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="destination"/>
+		<property name="messageListener">
+			<bean class="test.MessageLogger"/>
+		</property>
+	</bean>
+		
+	<!--  	
+	<bean class="org.springframework.jms.listener.serversession.ServerSessionMessageListenerContainer">
+		<property name="autoStartup" value="true"/>
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="destination"/>
+		<property name="messageListener" ref="messageListener1"/>
+		<property name="serverSessionFactory">
+			<bean class="org.springframework.jms.listener.serversession.CommonsPoolServerSessionFactory">
+				<property name="minIdle" value="3"/>
+				<property name="maxIdle" value="10"/>
+				<property name="maxSize" value="20"/>
+			</bean>
+		</property>
+		<property name="sessionTransacted" value="true"/>
+	</bean>
+
+	<bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+		<property name="autoStartup" value="true"/>
+		<property name="connectionFactory" ref="connectionFactory"/>
+		<property name="destination" ref="destination" />
+		<property name="messageListener" ref="messageListener1"/>
+		<property name="concurrentConsumers" value="10"/>
+		<property name="receiveTimeout" value="4000"/>
+	</bean>	
+	-->
+	
+	<bean id="messageListener1" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<property name="delegate">
+			<bean class="test.MessageLoggerPojoVersion1"/>
+		</property>
+	</bean>
+	
+	<bean id="messageListener2" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<property name="delegate">
+			<bean class="test.MessageLoggerPojoVersion2"/>
+		</property>
+		<property name="messageConverter">
+			<null/>
+		</property>
+		<property name="defaultListenerMethod" value="receiveMessage"/>
+	</bean>
+	
+	<bean id="messageListener3" class="org.springframework.jms.listener.adapter.MessageListenerAdapter">
+		<property name="delegate">
+			<bean class="test.MessageLoggerPojoVersion3"/>
+		</property>
+		<property name="defaultResponseDestination" ref="destinationA"/>
+	</bean>
+	
+    <bean id="jmsTemplate" 
+    	class="org.springframework.jms.core.JmsTemplate"> 
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="defaultDestination" ref="destination"/>
+    </bean> 
+
+</beans>

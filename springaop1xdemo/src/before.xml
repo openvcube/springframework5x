@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <bean id="loggingBeforeAdvice" class="test.LoggingBeforeAdvice"/>
+	
+	<bean id="pointcut" 
+		class="org.springframework.aop.support.NameMatchMethodPointcut"
+		p:mappedName="getContent"/>
+	
+	<bean id="loggingBeforeAdvisor" 
+		class="org.springframework.aop.support.DefaultPointcutAdvisor"
+		p:advice-ref="loggingBeforeAdvice" p:pointcut-ref="pointcut"/>
+	
+   <bean id="helloworldbeanTarget" class="test.HelloWorld"/>
+   		
+   <bean id="helloworldbean"
+   		class="org.springframework.aop.framework.ProxyFactoryBean"
+   		p:proxyInterfaces="test.IHelloWorld" p:target-ref="helloworldbeanTarget">
+	  <property name="interceptorNames">
+         <list>
+            <idref local="loggingBeforeAdvisor"/>
+         </list>
+      </property>
+   </bean>
+   
+</beans>

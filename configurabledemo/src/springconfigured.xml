@@ -10,8 +10,11 @@
 	<context:spring-configured/>
 	
 	<bean scope="prototype" autowire="byType"
-	      class="com.openv.book.springframework40.aop.SecurityAccount"/>
+	      class="test.ConfiguredBySpringDI"/>
 		
-	<bean class="com.openv.book.springframework40.aop.BankSecurityServiceImpl"/>
+	<bean class="test.InfoBean" scope="prototype">
+		<property name="userName" value="userName"/>
+		<property name="password" value="password"/>
+	</bean>
 	
 </beans>

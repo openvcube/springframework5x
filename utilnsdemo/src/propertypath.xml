@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+									http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<bean id="propertyPath" 
+		class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
+		<property name="targetBeanName">
+			<idref local="helloWorld"/>
+		</property>
+		<property name="propertyPath" value="hello"/>
+	</bean>
+	
+	<bean id="helloWorld" class="test.HelloWorld">
+		<property name="hello" value="hi"/>
+	</bean>
+	
+	<util:property-path id="property-path" path="helloWorld.hello"/>
+	
+</beans>

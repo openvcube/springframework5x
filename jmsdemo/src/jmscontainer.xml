@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xsi:schemaLocation=
+       		"http://www.springframework.org/schema/beans 
+       			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			  				http://www.springframework.org/schema/jee 
+			    http://www.springframework.org/schema/jee/spring-jee-2.5.xsd
+			    			  http://www.springframework.org/schema/jms 
+			    http://www.springframework.org/schema/jms/spring-jms-2.5.xsd">
+			    
+	<jee:jndi-lookup id="connectionFactory" jndi-name="ConnectionFactory">
+			<jee:environment >
+				java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+				java.naming.provider.url=jnp://localhost:1099
+				java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+			</jee:environment>
+	</jee:jndi-lookup>
+
+	<jms:listener-container connection-factory="connectionFactory" 
+		concurrency="10" destination-resolver="jndiDestinationResolver">
+		<jms:listener destination="queue/testQueue" ref="messageLogger"/>
+	</jms:listener-container>
+	
+	<bean id="jndiDestinationResolver" 
+		class="org.springframework.jms.support.destination.JndiDestinationResolver">
+		<property name="jndiEnvironment">
+			<props>
+				<prop key="java.naming.factory.initial">
+					org.jnp.interfaces.NamingContextFactory
+				</prop>
+				<prop key="java.naming.provider.url">
+					jnp://localhost:1099
+				</prop>
+				<prop key="java.naming.factory.url.pkgs">
+					org.jboss.naming:org.jnp.interfaces
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="messageLogger" class="test.MessageLogger"/>
+	
+    <bean id="jmsTemplate" 
+    	class="org.springframework.jms.core.JmsTemplate"> 
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="defaultDestinationName" value="queue/testQueue"/>
+        <property name="destinationResolver" ref="jndiDestinationResolver"/>
+    </bean> 
+
+</beans>

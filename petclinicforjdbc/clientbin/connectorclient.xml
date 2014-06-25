@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="proxyUserInfo" 
+		class="org.springframework.jmx.access.MBeanProxyFactoryBean">
+		<property name="connectOnStartup" value="true"/>
+		<property name="objectName" value="bean:spring=userInfo"/>
+		<property name="proxyInterface" value="test.IUserInfo"/>
+		<property name="serviceUrl" 
+			value="service:jmx:rmi:///jndi/rmi://localhost:9999/springdragon"/>
+	</bean>
+		
+</beans>

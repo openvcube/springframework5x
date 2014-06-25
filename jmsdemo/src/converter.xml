@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xsi:schemaLocation=
+       		"http://www.springframework.org/schema/beans 
+       			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+			  http://www.springframework.org/schema/jee 
+			    http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+	<jee:jndi-lookup id="connectionFactory" jndi-name="ConnectionFactory">
+			<jee:environment >
+				java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+				java.naming.provider.url=jnp://localhost:1099
+				java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+			</jee:environment>
+	</jee:jndi-lookup>
+
+	<jee:jndi-lookup id="destination" jndi-name="queue/testQueue">
+			<jee:environment >
+				java.naming.factory.initial=org.jnp.interfaces.NamingContextFactory
+				java.naming.provider.url=jnp://localhost:1099
+				java.naming.factory.url.pkgs=org.jboss.naming:org.jnp.interfaces
+			</jee:environment>
+	</jee:jndi-lookup>
+
+    <bean id="jmsTemplate" 
+    	class="org.springframework.jms.core.JmsTemplate"> 
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="defaultDestination" ref="destination"/>
+        <property name="receiveTimeout" value="10"/>
+        <property name="explicitQosEnabled" value="true"/>
+        <property name="messageConverter">
+        	<bean class="test.UserPassInfoConverter"/>
+        </property>
+    </bean> 
+
+</beans>

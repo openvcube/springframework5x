@@ -3,8 +3,6 @@
  */
 package test;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 /**
  * 
@@ -20,14 +18,16 @@ import org.apache.commons.logging.LogFactory;
  */
 public class DisPersonInfo {
 
-	private static final Log log = LogFactory.getLog(DisPersonInfo.class);
+	//private static final Log log = LogFactory.getLog(DisPersonInfo.class);
 
 	public static void compute(String person) {
-		log.info(person);
+		//log.info(person);
+		System.out.println(person);
 	}
 
 	public static void compute(String person, int age) {
-		log.info(person + "已经" + age + "岁了！");
+		//log.info(person + "已经" + age + "岁了！");
+		System.out.println(person + "已经" + age + "岁了！");
 	}
 
 }

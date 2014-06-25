@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean class="org.springframework.jmx.export.annotation.AnnotationMBeanExporter">
+		<property name="notificationListeners">
+			<list>
+				<bean class="org.springframework.jmx.export.NotificationListenerBean">
+					<constructor-arg>
+						<bean class="test.UserInfoOperaNotificationListener"/>
+					</constructor-arg>
+					<property name="mappedObjectNames">
+						<list>
+							<value>bean:spring=userInfo</value>
+						</list>
+					</property>
+					<property name="handback" value="springdragon"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="userInfo" class="test.UserInfoImpl">
+		<property name="userName" value="spring"/>
+		<property name="password" value="dragon"/>
+	</bean>
+	
+</beans>

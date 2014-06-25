@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:p="http://www.springframework.org/schema/p"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans 
+			http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+				http://www.springframework.org/schema/context 
+					http://www.springframework.org/schema/context/spring-context-2.5.xsd
+				http://www.springframework.org/schema/tx 
+					http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:property-placeholder 
+		location="WEB-INF/jdbc.properties"/>
+
+	<bean id="dataSource" 
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${jdbc.driverClassName}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="mappingResources">
+			<value>org/springframework/samples/imagedb/Imagedb.hbm.xml</value>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+			</props>
+		</property>
+		<property name="lobHandler" ref="oracleLobHandler"/>
+	</bean>
+
+	<bean id="transactionManager" 
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="imageDatabase" 
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		p:transactionManager-ref="transactionManager">
+		<property name="target">
+			<bean class="org.springframework.samples.imagedb.DefaultImageDatabase">
+				<property name="sessionFactory" ref="sessionFactory"/>
+			</bean>		
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="getImages">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="streamImage">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="storeImage">PROPAGATION_REQUIRED</prop>
+				<prop key="clearDatabase">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="oracleLobHandler" 
+		class="org.springframework.jdbc.support.lob.OracleLobHandler" 
+		p:nativeJdbcExtractor-ref="nativeJdbcExtractor"/>
+
+	<bean id="nativeJdbcExtractor" 
+		class="org.springframework.jdbc.support.nativejdbc.C3P0NativeJdbcExtractor"/>
+
+</beans>

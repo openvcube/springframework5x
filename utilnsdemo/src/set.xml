@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+									http://www.springframework.org/schema/util 
+		http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+	<bean id="abstractCollectionBean" abstract="true" class="test.CollectionBean">
+		<property name="set">
+			<set>
+				<value>set1</value>
+				<value>set2</value>
+			</set>
+		</property>
+	</bean>
+
+	<bean id="collectionBean" class="test.CollectionBean" 
+			parent="abstractCollectionBean">
+			<property name="set">
+				<set merge="true" value-type="java.lang.String">
+					<value>set1</value>
+					<idref local="abstractCollectionBean"/>
+					<null/>
+				</set>
+			</property>
+	</bean>
+		
+	<bean id="set" class="org.springframework.beans.factory.config.SetFactoryBean">
+		<property name="targetSetClass" value="java.util.HashSet"/>
+		<property name="sourceSet">
+			<set>
+				<value>first</value>
+				<value>second</value>
+				<value>three</value>
+				<value>four</value>
+			</set>
+		</property>
+	</bean>
+	
+	<util:set id="setUtil" set-class="java.util.HashSet">
+		<value>first</value>
+		<value>second</value>
+		<value>three</value>
+		<value>four</value>
+	</util:set>
+	
+</beans>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<project name="jcademo" default="rar" basedir=".">
+	<property name="rar.file" value="jcarardemo.rar"/>
+	<property name="rarloggingbean.jar" value="rarloggingbean.jar"/>
+
+	<target name="rar">
+		<delete file="${rar.file}"/>
+		<delete file="${rarloggingbean.jar}"/>
+		<jar jarfile="rarloggingbean.jar">
+			<fileset dir="./bin">
+				<include  name="**/test/LogRunner.class"/>
+				<include  name="**/test/RarLoggingBean.class"/>
+			</fileset>
+		</jar>
+		<jar jarfile="${rar.file}">
+			<fileset dir="./bin">
+				<include  name="**/META-INF/*.xml"/>
+			</fileset>
+			<fileset dir="lib">
+				<include name="spring.jar"/>
+			</fileset>
+			<fileset dir=".">
+				<include name="${rarloggingbean.jar}"/>
+			</fileset>
+		</jar>
+		<delete file="${rarloggingbean.jar}"/>
+	</target>
+
+</project>

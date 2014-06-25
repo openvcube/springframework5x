@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:p="http://www.springframework.org/schema/p"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+   <bean id="syncTaskExecutor"
+   		class="org.springframework.core.task.SyncTaskExecutor"/>
+   	
+   	<bean id="simpleAsyncTaskExecutor" 
+   		class="org.springframework.core.task.SimpleAsyncTaskExecutor">
+   		<property name="daemon" value="true"/>
+   		<property name="concurrencyLimit" value="2"/>
+   		<property name="threadNamePrefix" value="simpleAsyncTaskExecutor"/>
+   	</bean>
+   	
+   	<bean id="threadPoolTaskExecutor"
+   		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+   		<property name="corePoolSize" value="2"/>
+   		<property name="keepAliveSeconds" value="200"/>
+   		<property name="maxPoolSize" value="10"/>
+   		<property name="queueCapacity" value="60"/>
+   	</bean>
+
+   	<bean id="concurrentTaskExecutor" 
+   		class="org.springframework.scheduling.concurrent.ConcurrentTaskExecutor"/>
+   	
+   	<bean id="timerTaskExecutor" 
+   		class="org.springframework.scheduling.timer.TimerTaskExecutor">
+		<property name="delay" value="1000"/>
+   	</bean>
+   	
+   	<bean id="simpleThreadPoolTaskExecutor" 
+   		class="org.springframework.scheduling.quartz.SimpleThreadPoolTaskExecutor">
+   		<property name="makeThreadsDaemons" value="true"/>
+   		<property name="threadCount" value="5"/>
+   		<property name="threadNamePrefix" value="simpleThreadPoolTaskExecutor"/>
+   		<property name="waitForJobsToCompleteOnShutdown" value="true" />   		
+   	</bean>
+   	   	
+   	<!--
+   	<bean id="workManagerTaskExecutor" 
+   		class="org.springframework.scheduling.commonj.WorkManagerTaskExecutor">
+   		<property name="workManagerName" value="jndi/workManager"/>   		
+   	</bean>
+   	-->
+   	
+</beans>

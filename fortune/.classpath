@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" output="bin" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-logging.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/spring.jar" sourcepath="/spring"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/standard.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/bsh-2.0b4.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/jruby.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/spring-webmvc.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/asm-2.2.3.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/asm-commons-2.2.3.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/asm-util-2.2.3.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/backport-util-concurrent.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="context/WEB-INF/lib/groovy-1.5.5.jar"/>
+	<classpathentry kind="output" path="context/WEB-INF/classes"/>
+</classpath>

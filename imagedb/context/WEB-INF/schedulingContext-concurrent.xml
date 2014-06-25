@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+
+<beans>
+
+	<bean id="scheduledExecutorFactoryBean" 
+		class="org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean">
+		<property name="poolSize" value="5" />
+		<property name="scheduledExecutorTasks">
+			<list>
+				<ref bean="scheduledExecutorTasks"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="scheduledExecutorTasks" 
+		class="org.springframework.scheduling.concurrent.ScheduledExecutorTask">
+		<property name="runnable" ref="listImagesTimerTask"/>
+		<property name="period" value="5000"/>
+	</bean>
+		
+	<bean id="listImagesTimerTask" 
+		class="org.springframework.samples.imagedb.scheduling.ListImagesTimerTaskRunnable">
+		<property name="imageDatabase" ref="imageDatabase"/>
+		<property name="mailSender" ref="mailSender"/>
+		<property name="mailFrom" value="${mail.from}"/>
+		<property name="mailTo" value="${mail.to}"/>
+	</bean>
+
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2008-5-8 14:10:15 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="org.springframework.samples.Owners" table="OWNERS">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="30" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="30" />
+        </property>
+        <property name="address" type="string">
+            <column name="ADDRESS" />
+        </property>
+        <property name="city" type="string">
+            <column name="CITY" length="80" />
+        </property>
+        <property name="telephone" type="string">
+            <column name="TELEPHONE" length="20" />
+        </property>
+        <set name="petses" inverse="true">
+            <key>
+                <column name="OWNER_ID" not-null="true" />
+            </key>
+            <one-to-many class="org.springframework.samples.Pets" />
+        </set>
+    </class>
+</hibernate-mapping>

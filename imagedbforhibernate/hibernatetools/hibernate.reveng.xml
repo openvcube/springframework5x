@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering SYSTEM "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+	<type-mapping>
+		<sql-type jdbc-type="BLOB" 
+			hibernate-type="org.springframework.orm.hibernate3.support.BlobByteArrayType"/>
+		<sql-type jdbc-type="CLOB" 
+			hibernate-type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+	</type-mapping>
+ 
+	<table-filter match-name="BIN$.*" exclude="true"/>	
+	<table-filter match-name="IMAGEDB" exclude="false"/> 	 
+	 
+</hibernate-reverse-engineering>

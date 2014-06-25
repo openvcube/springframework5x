@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">			
+
+	<bean id="sbe" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value="SBusinessExampleEjb30/remote"/>
+		<property name="cache" value="false"/>
+		<property name="proxyInterface" value="test.ejb3.IBusinessInterface"/>
+	</bean>
+		
+</beans>

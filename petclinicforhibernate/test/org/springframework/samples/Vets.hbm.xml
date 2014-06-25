@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2008-5-8 14:10:15 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="org.springframework.samples.Vets" table="VETS">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="FIRST_NAME" length="30" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="LAST_NAME" length="30" />
+        </property>
+        <set name="specialtieses" inverse="false" table="VET_SPECIALTIES">
+            <key>
+                <column name="VET_ID" not-null="true" />
+            </key>
+            <many-to-many entity-name="org.springframework.samples.Specialties">
+                <column name="SPECIALTY_ID" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
