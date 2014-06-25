@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="lookupBean" class="test.LookupBeanImpl">
+		<lookup-method name="createAbstractLookedBean" bean="lookedBean"/>
+		<lookup-method name="createLookedBean" bean="lookedBean"/>
+		<property name="count" value="10"/>
+		<constructor-arg>
+			<value>lookupBean</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="lookedBean" class="test.LookedBean" scope="prototype">
+		<property name="time" value="2000"/>
+	</bean>
+	
+</beans>

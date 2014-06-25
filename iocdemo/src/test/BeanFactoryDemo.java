@@ -1,4 +1,4 @@
-package com.openv.book.springframework40.ioc;
+package test;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -7,23 +7,24 @@ import org.springframework.beans.factory.xml.XmlBeanFactory;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+/**
+ * HelloWorldå®¢æˆ·åº”ç”¨
+ * 
+ * @author worldheart
+ */
 public class BeanFactoryDemo {
 
-	private static final Log log = LogFactory.getLog(BeanFactoryDemo.class);
+	protected static final Log log = LogFactory.getLog(BeanFactoryDemo.class);
 
 	public static void main(String[] args) {
-		//´ÓclasspathÂ·¾¶ÉÏ×°ÔØXMLÅäÖÃĞÅÏ¢
+		//ä»classpathè·¯å¾„ä¸Šè£…è½½XMLé…ç½®ä¿¡æ¯
 		Resource resource = new ClassPathResource("beanfactory.xml");
-		
-		//ÊµÀı»¯IoCÈİÆ÷£¬´ËÊ±£¬ÈİÆ÷²¢Î´ÊµÀı»¯beanfactory.xmlËù¶¨ÒåµÄ¸÷¸öÊÜ¹ÜBean
+		//å®ä¾‹åŒ–IoCå®¹å™¨ï¼Œæ­¤æ—¶ï¼Œå®¹å™¨å¹¶æœªå®ä¾‹åŒ–beanfactory.xmlæ‰€å®šä¹‰çš„å„ä¸ªå—ç®¡Bean
 		BeanFactory factory = new XmlBeanFactory(resource);
-		
-		//»ñµÃÊÜ¹ÜBean
-		IBankSecurityService bankSecurityService = 
-			(IBankSecurityService) factory.getBean("bankSecurityService");
-		
-		bankSecurityService.bankToSecurity(2000.00);
-		bankSecurityService.securityToBank(2000.00);
+		//è·å¾—å—ç®¡Bean
+		IHelloWorld hw = (IHelloWorld) factory.getBean("helloWorld");
+		//è¿”å›å­—ç¬¦ä¸²
+		log.info(hw.getContent());
 	}
 
 }

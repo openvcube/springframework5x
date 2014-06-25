@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="abstractBean1" class="test.TestAbstractBean" abstract="true">
+		<property name="username" value="un"/>
+	</bean>
+	
+	<bean id="childBean1" class="test.TestAbstractBean" parent="abstractBean1">
+		<property name="password" value="pw"/>
+	</bean>
+	
+	<bean id="abstractBean2" class="test.TestAbstractBean" abstract="true">
+		<property name="username" value="un"/>
+		<property name="sex" value="male"/>
+	</bean>
+	
+	<bean id="abstractBean3" class="test.TestAbstractBean" parent="abstractBean2" abstract="true">
+		<property name="username" value="username"/>
+	</bean>
+	
+	<bean id="childBean2" class="test.TestAbstractBean" parent="abstractBean3">
+		<property name="password" value="pw"/>
+	</bean>
+	
+	<bean id="abstractBean4" abstract="true">
+		<property name="username" value="un"/>
+	</bean>
+	
+	<bean id="childBean3" class="test.TestAbstractBean" parent="abstractBean4">
+		<property name="password" value="pw"/>
+	</bean>
+	
+	<bean id="abstractBean5" abstract="true">
+		<property name="username" value="un"/>
+		<property name="sex" value="male"/>
+	</bean>
+	
+	<bean id="abstractBean6" parent="abstractBean5" abstract="true">
+		<property name="username" value="username"/>
+	</bean>
+	
+	<bean id="childBean4" class="test.TestAbstractBean" parent="abstractBean6">
+		<property name="password" value="pw"/>
+	</bean>
+	
+</beans>

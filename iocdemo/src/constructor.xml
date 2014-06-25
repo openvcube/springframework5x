@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+     
+     <bean name="fileHello1" class="test.FileHelloStrImpl">
+          <constructor-arg value="helloworld.properties"/>
+          <constructor-arg ref="testBean"/>  
+     </bean>
+
+     <bean name="fileHello2" class="test.FileHelloStrImpl">
+          <constructor-arg ref="testBean"/>  
+          <constructor-arg value="helloworld.properties"/>
+     </bean>
+     
+     <bean name="fileHello3" class="test.FileHelloStrImpl">
+          <constructor-arg index="0" value="helloworld.properties"/>
+          <constructor-arg index="1" ref="testBean"/>  
+     </bean>
+
+     <bean name="fileHello4" class="test.FileHelloStrImpl">
+          <constructor-arg index="0" ref="testBean"/>  
+          <constructor-arg index="1" value="helloworld.properties"/>
+     </bean>
+     
+     <bean name="fileHello5" class="test.FileHelloStrImpl">
+          <constructor-arg type="test.ITestBean" ref="testBean"/>  
+          <constructor-arg type="java.lang.String" value="helloworld.properties"/>
+     </bean>
+     
+     <bean name="fileHello6" class="test.FileHelloStrImpl">
+          <constructor-arg index="0" ref="testBean"/>  
+          <constructor-arg type="java.lang.String" value="helloworld.properties"/>
+     </bean>
+     
+     <bean id="testBean" class="test.TestBean"/>
+
+</beans>
