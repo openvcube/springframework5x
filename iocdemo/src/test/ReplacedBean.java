@@ -6,10 +6,16 @@ import org.springframework.beans.factory.support.MethodReplacer;
 import org.springframework.util.Assert;
 
 /**
- * 实现MethodReplacer
  * 
- * @author worldheart
- *
+ * <pre>
+ * 实现MethodReplacer。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class ReplacedBean implements MethodReplacer{
 	

@@ -3,6 +3,9 @@
  */
 package test;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 
 /**
  * 
@@ -18,11 +21,10 @@ package test;
  */
 public class MainTest {
 	
-	//private static final Log log = LogFactory.getLog(MainTest.class);
+	private static final Log log = LogFactory.getLog(MainTest.class);
 	
 	public static void main(String[] args) {
-		//log.info("MainTest main().........");
-		System.out.println("MainTest main().........");
+		log.info("MainTest main().........");
 		
 		DisPersonInfo.compute("李三");
 		DisPersonInfo.compute("王二", 30);

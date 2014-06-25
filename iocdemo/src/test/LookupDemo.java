@@ -19,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class LookupDemo {
 
-	protected static final Log log = LogFactory.getLog(LookupDemo.class);
+	private static final Log log = LogFactory.getLog(LookupDemo.class);
 
 	public static void main(String[] args) {
 		//实例化IoC容器

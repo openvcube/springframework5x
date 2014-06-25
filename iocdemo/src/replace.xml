@@ -9,7 +9,7 @@
 			<arg-type match="int"/>
 		</replaced-method>
 		<replaced-method name="computeResult" replacer="replacedBean">
-			<arg-type match="java.lang.Str"/>
+			<arg-type match="java.lang.Str"/>			
 		</replaced-method>
 		<property name="count" value="10"/>
 		<constructor-arg>
