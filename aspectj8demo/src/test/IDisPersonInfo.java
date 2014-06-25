@@ -1,3 +1,6 @@
+/**
+ * Copyright(c) http://www.open-v.com
+ */
 package test;
 
 /**
