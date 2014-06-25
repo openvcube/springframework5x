@@ -24,10 +24,16 @@ import org.springframework.core.SpringVersion;
 import org.springframework.core.io.ResourceLoader;
 
 /**
- * 实现了许多回调接口
  * 
- * @author worldheart
- *
+ * <pre>
+ * 实现了许多回调接口。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class TestBean implements ITestBean, BeanNameAware,
 	BeanClassLoaderAware, BeanFactoryAware, ResourceLoaderAware,

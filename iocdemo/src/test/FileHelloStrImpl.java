@@ -7,9 +7,16 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * 基于文件形式，读取HelloWorld所需的字符串。
  * 
- * @author worldheart
+ * <pre>
+ * 基于文件形式，读取HelloWorld所需的字符串。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class FileHelloStrImpl implements IHelloStr {
 	

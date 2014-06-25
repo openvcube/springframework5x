@@ -8,13 +8,20 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
 /**
- * 演示factory-method
  * 
- * @author worldheart
+ * <pre>
+ * 演示factory-method。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class FactoryMethodDemo {
 
-	protected static final Log log = LogFactory.getLog(FactoryMethodDemo.class);
+	private static final Log log = LogFactory.getLog(FactoryMethodDemo.class);
 
 	public String getContent(){
 		//从classpath路径上装载XML配置信息
