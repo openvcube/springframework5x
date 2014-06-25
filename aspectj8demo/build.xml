@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<project name="aspectj8demo" default="run">
+			
+	<target name="run" depends="compile">
+		
+		<java classname="test.MainTest">
+			<classpath>
+				<pathelement location="../springframework4.0-libs/commons-logging-1.1.3.jar"/>
+				<pathelement location="../springframework4.0-libs/log4j-1.2.17.jar"/>
+				<pathelement location="dest"/>
+				<pathelement location="D:/aspectj1.8/lib/aspectjrt.jar"/>
+			</classpath>
+		</java>
+		
+	</target>
+	
+	<target name="compile">
+		
+		<taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+		    <classpath>
+		      <pathelement location="D:/aspectj1.8/lib/aspectjtools.jar"/>
+		    </classpath>
+		</taskdef>
+		
+		<delete dir="dest"/>
+		<mkdir dir="dest"/>
+		
+		<iajc destdir="dest" source="1.8">
+			<sourceroots>
+					<pathelement location="src"/>
+			</sourceroots>
+			<classpath>
+   				   <pathelement location="../springframework4.0-libs/commons-logging-1.1.3.jar"/>
+				   <pathelement location="../springframework4.0-libs/log4j-1.2.17.jar"/>
+				   <pathelement location="D:/aspectj1.8/lib/aspectjrt.jar"/>
+			</classpath>
+		</iajc>
+		
+		<copy todir="dest" file="src/log4j.properties"/>
+		<copy todir="dest" file="src/commons-logging.properties"/>
+		
+	</target>
+
+</project>
