@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="tbByName" class="test.TestBean1" autowire="byName"/>
 		
@@ -10,10 +10,7 @@
 	
 	<bean id="tbConstructor" class="test.TestBean1" autowire="constructor"/>
 	
-	<!-- 由于TestBean1提供了默认构建器，因此会使用byType -->
-	<bean id="tbAutodetect" class="test.TestBean1" autowire="autodetect"/>
-	
-	<bean id="testBean2" class="test.TestBean2"/>	
+	<bean id="testBean2" class="test.TestBean2"/>
 	
 	<bean id="testBean3" class="test.TestBean3"/>
 	

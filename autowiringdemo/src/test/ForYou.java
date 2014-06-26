@@ -6,10 +6,16 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * ¶¨ÒåÔËĞĞÊ±¡¢·½·¨¼¶µÄ×¢ÊÍ
  * 
- * @author worldheart
- *
+ * <pre>
+ * å®šä¹‰è¿è¡Œæ—¶ã€æ–¹æ³•çº§çš„æ³¨è§£ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
