@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="/springframework4.0-libs/spring-context-4.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/spring-core-4.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/spring-expression-4.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/springframework4.0-libs/javax.inject-1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

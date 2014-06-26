@@ -4,6 +4,18 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Required;
 
+/**
+ * 
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
+ */
 public class TestBean implements ITestBean {
 
 	protected static final Log log = LogFactory.getLog(TestBean.class);
@@ -43,13 +55,13 @@ public class TestBean implements ITestBean {
 
 	public void testBean() {
 		if (this.hw1 != null) {
-			log.info("hw1����Ϊnull!");
+			log.info("hw1对象不为null!");
 		}
 		if (this.hw2 != null) {
-			log.info("hw2����Ϊnull!");
+			log.info("hw2对象不为null!");
 		}
 		if (this.str != null) {
-			log.info("str��Ϊnull!");
+			log.info("str不为null!");
 		}
 	}
 

@@ -32,7 +32,7 @@ public class TestBeanForYou implements ITestBean{
 	
 	public void testBean() {
 		if(this.hw  != null){
-			log.info("HelloWorld����Ϊnull!");
+			log.info("HelloWorld对象不为null!");
 		}
 	}
 

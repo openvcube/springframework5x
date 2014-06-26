@@ -21,7 +21,7 @@ public class TestBean1 {
 
 	@Autowired
 	private TestBean3 testBean3;
-		
+	
 	public TestBean1() {
 	}
 
