@@ -9,7 +9,7 @@
 		class="org.springframework.beans.factory.aspectj.AnnotationBeanConfigurerAspect" 
 		factory-method="aspectOf"/>
 
-	<bean scope="prototype" class="test.ConfiguredBySpringDI" autowire="byType"/>
+	<bean scope="prototype" class="test.ConfiguredBySpringDI"/>
 
 	<bean class="test.InfoBean" scope="prototype"
 		p:userName="userName" p:password="password"/>
