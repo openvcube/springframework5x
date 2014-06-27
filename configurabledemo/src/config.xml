@@ -4,8 +4,7 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   		http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean 
-		class="org.springframework.beans.factory.aspectj.AnnotationBeanConfigurerAspect" 
+	<bean class="org.springframework.beans.factory.aspectj.AnnotationBeanConfigurerAspect" 
 		factory-method="aspectOf"/>
 
 	<bean scope="prototype"

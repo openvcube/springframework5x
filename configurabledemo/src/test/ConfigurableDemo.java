@@ -5,9 +5,16 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * ÑİÊ¾Configurable×¢ÊÍµÄÊ¹ÓÃ
  * 
- * @author worldheart
+ * <pre>
+ * æ¼”ç¤º@Configurableæ³¨è§£çš„ä½¿ç”¨ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class ConfigurableDemo{
 
@@ -15,17 +22,19 @@ public class ConfigurableDemo{
 
 	public static void main(String[] args) {
 		
-		//ÆôÓÃSpring DI£¬²¢Íê³ÉAspectJ 6ÇĞÃæµÄÅäÖÃ¹¤×÷£¬±ÈÈç½«IoCÈİÆ÷±©Â¶¸øÇĞÃæ
-		new ClassPathXmlApplicationContext("ltw.xml");
+		//å¯ç”¨Spring DIï¼Œå¹¶å®ŒæˆAspectJ 8åˆ‡é¢çš„é…ç½®å·¥ä½œï¼Œæ¯”å¦‚å°†IoCå®¹å™¨æš´éœ²ç»™åˆ‡é¢
+		new ClassPathXmlApplicationContext("config.xml");
 				
-		log.info("¼´½«¹¹½¨ÁìÓò¶ÔÏó");
+		log.info("å³å°†æ„å»ºé¢†åŸŸå¯¹è±¡");
 		
-		//ºÜ¶àÊ±ºò£¬Hibernate/JPA/Ó¦ÓÃ´úÂë»á¸ºÔğ´´½¨ÁìÓò¶ÔÏó
+		//å¾ˆå¤šæ—¶å€™ï¼ŒHibernate/JPA/åº”ç”¨ä»£ç ä¼šè´Ÿè´£åˆ›å»ºé¢†åŸŸå¯¹è±¡
 		ConfiguredBySpringDI springDI = new ConfiguredBySpringDI();
+
+		ConfiguredBySpringDI springDI1 = new ConfiguredBySpringDI();
+
+		log.info("AspectJ 8å·²ç»å®Œæˆäº†é¢†åŸŸå¯¹è±¡çš„é…ç½®å·¥ä½œ");
 		
-		log.info("AspectJ 6ÒÑ¾­Íê³ÉÁËÁìÓò¶ÔÏóµÄÅäÖÃ¹¤×÷");
-		
-		// ÎÒÃÇ²¢Ã»ÓĞÏÔÊ½ÉèÖÃspringDIµÄĞ­×÷Õß£¬µ«infoBeanÈ·Êµ²»ÔÙÊÇnull
+		// æˆ‘ä»¬å¹¶æ²¡æœ‰æ˜¾å¼è®¾ç½®springDIçš„åä½œè€…ï¼Œä½†infoBeanç¡®å®ä¸å†æ˜¯null
 		log.info(springDI.getInfoBean().getUserName());
 		log.info(springDI.getInfoBean().getPassword());
 		

@@ -4,7 +4,7 @@
 <aspectj>
    <weaver 
 	 options="-showWeaveInfo -XmessageHandlerClass:org.springframework.aop.aspectj.AspectJWeaverMessageHandler">
-	 	<include within="com..*"/>
+	 	<include within="test..*"/>
    </weaver>
    <aspects>
 		<include within="org.springframework.beans.factory.aspectj.AnnotationBeanConfigurerAspect"/>
