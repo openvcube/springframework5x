@@ -27,9 +27,9 @@ public class AopAfterAspect {
 	private static final Log log = 
 		LogFactory.getLog(AopAfterAspect.class);
 	
-	@Pointcut("execution(* *InfoAfter.compute(..))")
+	@Pointcut("execution(* test.*InfoAfter.compute(..))")
 	public void xx(){}
-				
+	
 	@After("xx()")
 	public void yy(){		
 		log.info("AopAfterAspect yy @After");

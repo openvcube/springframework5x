@@ -27,7 +27,7 @@ public class AopAfterThrowingAspect {
 	private static final Log log = 
 		LogFactory.getLog(AopAfterThrowingAspect.class);
 	
-	@Pointcut("execution(* *InfoAfterThrowing.compute(..))")
+	@Pointcut("execution(* test.*InfoAfterThrowing.compute(..))")
 	public void xx(){}
 	
 	@AfterThrowing("xx()")
@@ -36,7 +36,7 @@ public class AopAfterThrowingAspect {
 	}
 		
 	@AfterThrowing(pointcut="xx()",throwing="thr")
-	public void zz(RuntimeException  thr){
+	public void zz(RuntimeException thr){
 		log.info(thr.getMessage());
 		log.info("AopAfterThrowingAspect zz @AfterThrowing");
 	}

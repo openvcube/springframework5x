@@ -27,7 +27,7 @@ public class AopAroundAspect {
 
 	private static final Log log = LogFactory.getLog(AopAroundAspect.class);
 
-	@Pointcut("execution(* *InfoAround.compute(..)) && args(String)")
+	@Pointcut("execution(* test.*InfoAround.compute(..)) && args(String)")
 	public void xx() {
 	}
 

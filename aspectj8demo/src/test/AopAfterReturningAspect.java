@@ -27,7 +27,7 @@ public class AopAfterReturningAspect {
 	private static final Log log = 
 		LogFactory.getLog(AopAfterReturningAspect.class);
 	
-	@Pointcut("execution(* *InfoAfterReturning.compute(..))")
+	@Pointcut("execution(* test.*InfoAfterReturning.compute(..))")
 	public void xx(){}
 	
 	@AfterReturning("xx()")

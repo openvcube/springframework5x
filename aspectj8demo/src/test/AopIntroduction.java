@@ -31,7 +31,7 @@ public class AopIntroduction {
 	@DeclareParents(value="test.DisPersonInfoIntroduction", defaultImpl=test.DefaultDisPersonInfoIntroduction.class)
 	public IDisPersonInfoIntroduction dpi;
 
-	@Pointcut("execution(* *InfoIntroduction.compute(..))")
+	@Pointcut("execution(* test.*InfoIntroduction.compute(..))")
 	public void xx() {
 	}
 
