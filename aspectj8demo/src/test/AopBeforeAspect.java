@@ -36,7 +36,7 @@ public class AopBeforeAspect {
 	}
 
 	//这里使用了call关键字，注意它同execution的区别
-	@Pointcut("call(* *Info2.compute(..))")
+	@Pointcut("call(* *.compute(..))")
 	public void yy(){}
 	
 	@Before("yy()")

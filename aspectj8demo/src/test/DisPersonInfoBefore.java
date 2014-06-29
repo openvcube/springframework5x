@@ -20,10 +20,10 @@ import org.apache.commons.logging.LogFactory;
  */
 public class DisPersonInfoBefore implements IDisPersonInfo {
 
-	private int ij;
-	
 	private static final Log log = LogFactory.getLog(DisPersonInfoBefore.class);
 
+	private int ij;
+	
 	public void setIj(int ij) {
 		this.ij = ij;
 	}
