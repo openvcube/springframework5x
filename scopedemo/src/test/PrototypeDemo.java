@@ -6,14 +6,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * ��ʾbean scope���Ե�ʹ��
  * 
- * @author worldheart
- * 
+ * <pre>
+ * 演示bean scope属性的使用。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class PrototypeDemo {
 
-	protected final static Log log = LogFactory.getLog(PrototypeDemo.class);
+	private final static Log log = LogFactory.getLog(PrototypeDemo.class);
 
 	public static void main(String[] args) {
 		
