@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/aop/spring-aop.xsd">
 
    <bean id="helloworldDao" class="test.dao.HelloWorldDaoImpl"
-   	p:helloworld="hello world"/>
+   		p:helloworld="hello world"/>
 
    <bean id="helloworldService"
    		class="test.service.HelloWorldServiceImpl"
@@ -21,8 +21,8 @@
 		<aop:pointcut id="before" 
 			expression="execution(public void or String test.service..*(..)) and args(str) and target(obj) and this(proxy)"/>
 		<aop:aspect ref="loggingBeforeAspect">
-			<aop:before pointcut-ref="before" method="beforeAspect"/>
+			<aop:before pointcut-ref="before" method="beforeAspect"/>			
 		</aop:aspect>
   </aop:config>
-         		
+    
 </beans>

@@ -11,7 +11,7 @@
    <aop:aspectj-autoproxy/>
    
    <bean id="helloworldDao" class="test.dao.HelloWorldDaoThrowingImpl"
-   	p:helloworld="hello world"/>
+   		p:helloworld="hello world"/>
 
    <bean id="helloworldService"
    		class="test.service.HelloWorldServiceImpl"

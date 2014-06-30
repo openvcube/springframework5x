@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="/springframework4.0-libs/spring-context-4.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/spring-core-4.0.5.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/aopalliance-1.0.jar"/>
+	<classpathentry kind="lib" path="/springframework4.0-libs/spring-expression-4.0.5.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

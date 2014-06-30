@@ -23,8 +23,8 @@
    	p:beanNames="helloworldbean*">
    		<property name="interceptorNames">
    			<list>
-   				<idref local="loggingAroundAdvice"/>
-   				<idref local="simpleTraceAdvisor"/>
+   				<idref bean="loggingAroundAdvice"/>
+   				<idref bean="simpleTraceAdvisor"/>
    			</list>
    		</property>
    </bean>

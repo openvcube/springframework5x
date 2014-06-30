@@ -17,12 +17,11 @@
    <aop:aspectj-autoproxy/>
     
    <bean id="helloworldDao" class="test.dao.HelloWorldDaoImpl"
-   	p:helloworld="hello world"/>
+   		p:helloworld="hello world"/>
 
-   <bean id="helloworldService"
-   		class="test.service.HelloWorldServiceImpl"
+   <bean id="helloworldService" class="test.service.HelloWorldServiceImpl"
    		p:helloWorldDao-ref="helloworldDao"/>
  	
    <bean id="loggingBeforeAspect" class="test.aspect.LoggingBeforeAspect"/>
-         		
+   
 </beans>

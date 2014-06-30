@@ -22,7 +22,7 @@
    		p:proxyInterfaces="test.IHelloWorld" p:target-ref="helloworldbeanTarget">
 	  <property name="interceptorNames">
          <list>
-            <idref local="loggingBeforeAdvisor"/>
+            <idref bean="loggingBeforeAdvisor"/>
          </list>
       </property>
    </bean>

@@ -18,7 +18,7 @@
    		p:target-ref="helloworldbeanTarget" p:proxyTargetClass="true">
 	  <property name="interceptorNames">
          <list>
-            <idref local="loggingAfterReturningAdvisor"/>
+            <idref bean="loggingAfterReturningAdvisor"/>
          </list>
       </property>
    </bean>

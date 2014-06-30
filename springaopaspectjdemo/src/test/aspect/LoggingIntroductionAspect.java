@@ -45,7 +45,7 @@ public class LoggingIntroductionAspect {
 			str = "worldheart changed!";
 			return pjp.proceed(new Object[]{str});
 		} catch (Throwable e) {
-			log.error(e);
+			log.error("", e);
 		}
 		return null;
 	}

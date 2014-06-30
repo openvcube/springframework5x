@@ -19,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class HelloClientAfterReturning {
 
-	protected static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(HelloClientAfterReturning.class);
 
 	public static void main(String[] args) {

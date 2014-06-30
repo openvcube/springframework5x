@@ -18,7 +18,7 @@
    		p:proxyInterfaces="test.IHelloWorld" p:target-ref="helloworldbeanTarget">
 	  <property name="interceptorNames">
          <list>
-            <idref local="loggingAfterThrowingAdvisor"/>
+            <idref bean="loggingAfterThrowingAdvisor"/>
          </list>
       </property>
    </bean>

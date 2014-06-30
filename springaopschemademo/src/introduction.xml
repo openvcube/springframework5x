@@ -7,14 +7,14 @@
 			http://www.springframework.org/schema/aop 
 		http://www.springframework.org/schema/aop/spring-aop.xsd">
    
-   <bean id="helloworldDao" class="test.dao.HelloWorldDaoImpl">
+	<bean id="helloworldDao" class="test.dao.HelloWorldDaoImpl">
    		<property name="helloworld" value="hello world"/>
-   </bean>
+	</bean>
 
-   <bean id="helloworldService"
+	<bean id="helloworldService"
    		class="test.service.HelloWorldServiceImpl">
    		<property name="helloWorldDao" ref="helloworldDao"/>
-   </bean>   		
+	</bean>   		
  	
  	<bean id="loggingIntroductionAspect" class="test.aspect.LoggingIntroductionAspect"/>
  	
