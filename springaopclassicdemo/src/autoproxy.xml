@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+   
+   <bean id="simpleTraceAdvisor"
+      class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+      <property name="advice">
+            <bean class="org.springframework.aop.interceptor.SimpleTraceInterceptor"/>
+      </property>
+      <property name="pattern" value=".*"/>
+   </bean>
+
+   <bean id="loggingAroundAdvice" class="test.LoggingAroundAdvice"/>
+	
+   <bean id="helloworldbean1" class="test.HelloWorld"/>
+
+   <bean id="helloworldbean2" class="test.HelloWorld"/>
+   
+   <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"
+   	p:beanNames="helloworldbean*">
+   		<property name="interceptorNames">
+   			<list>
+   				<idref local="loggingAroundAdvice"/>
+   				<idref local="simpleTraceAdvisor"/>
+   			</list>
+   		</property>
+   </bean>
+
+	<!--  
+   <bean id="simpleTraceInterceptor" 
+   	class="org.springframework.aop.interceptor.SimpleTraceInterceptor"/>
+   
+   <bean id="loggingAroundAdvice" class="test.LoggingAroundAdvice"/>
+	   
+   <bean id="simpleTraceAdvisor"
+      class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+      <property name="advice" ref="simpleTraceInterceptor"/>
+      <property name="pattern" value=".*"/>
+      <property name="order" value="1"/>
+   </bean>
+   
+   <bean id="loggingAroundAdvisor"
+      class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+      <property name="advice" ref="loggingAroundAdvice"/>
+      <property name="pattern" value=".*"/>
+      <property name="order" value="2"/>
+   </bean>
+   
+   <bean id="helloworldbean1" class="test.HelloWorld"/>
+
+   <bean id="helloworldbean2" class="test.HelloWorld"/>
+   
+   <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>	
+   -->   		   
+
+</beans>

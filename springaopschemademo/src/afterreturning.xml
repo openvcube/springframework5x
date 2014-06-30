@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+   <bean id="helloworldDao" class="test.dao.HelloWorldDaoImpl">
+   		<property name="helloworld" value="hello world"/>
+   </bean>
+
+   <bean id="helloworldService"
+   		class="test.service.HelloWorldServiceImpl">
+   		<property name="helloWorldDao" ref="helloworldDao"/>
+   </bean>   		
+ 	
+ 	<bean id="loggingAfterReturningAspect" class="test.aspect.LoggingAfterReturningAspect"/>
+ 	
+ 	<aop:config>
+ 		<aop:pointcut id="afterRe" 
+ 			expression="execution(public void or String test.service..*(String))"/>
+ 		<aop:aspect ref="loggingAfterReturningAspect">
+ 			<aop:after-returning pointcut-ref="afterRe" method="afterReturningAspect" 
+ 				returning="retur"/>
+ 		</aop:aspect>
+ 	</aop:config>
+         		
+</beans>
