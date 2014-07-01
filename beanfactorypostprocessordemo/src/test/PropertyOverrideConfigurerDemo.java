@@ -19,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PropertyOverrideConfigurerDemo {
 
-	protected final static Log log = LogFactory.getLog(PropertyOverrideConfigurerDemo.class);
+	private static final Log log = LogFactory.getLog(PropertyOverrideConfigurerDemo.class);
 
 	public static void main(String[] args) {
 		

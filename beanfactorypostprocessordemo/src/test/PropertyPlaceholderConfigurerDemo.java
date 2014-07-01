@@ -19,7 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class PropertyPlaceholderConfigurerDemo {
 
-	protected final static Log log = LogFactory.getLog(PropertyPlaceholderConfigurerDemo.class);
+	private static final Log log = LogFactory.getLog(PropertyPlaceholderConfigurerDemo.class);
 
 	public static void main(String[] args) {
 

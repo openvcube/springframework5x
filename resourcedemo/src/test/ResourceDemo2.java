@@ -8,40 +8,46 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.springframework.core.io.Resource;
 
 /**
- * Ö¤ÊµResourceµÄ¸÷ÖÖÓÃ·¨
  * 
- * @author worldheart
- *
+ * <pre>
+ * è¯å®Resourceçš„å„ç§ç”¨æ³•ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class ResourceDemo2 {
 
-	protected static final Log log = LogFactory.getLog(ResourceDemo2.class);
+	private static final Log log = LogFactory.getLog(ResourceDemo2.class);
 	
 	public static void main(String[] args){
 
 		ApplicationContext ac = new ClassPathXmlApplicationContext("classpath:test/resource2.xml");
 		
-		//»ñµÃClassPathResource
+		//è·å¾—ClassPathResource
 		Resource res = ac.getResource("test/resource2.xml");
 		
-		//»ñµÃClassPathResource
+		//è·å¾—ClassPathResource
 		res = ac.getResource("classpath:resource1.xml");
 		
-		//»ñµÃUrlResource
+		//è·å¾—UrlResource
 		res = ac.getResource("file:D:/eclipse/workspace/resourcedemo/src/resource1.xml");
 		
-		//»ñµÃClassPathResource
+		//è·å¾—ClassPathResource
 		res = ac.getResource("D:/eclipse/workspace/resourcedemo/src/resource1.xml");
 		
 		ac = new FileSystemXmlApplicationContext("file:D:/eclipse/workspace/resourcedemo/src/resource1.xml");
 		
-		//»ñµÃUrlResource
+		//è·å¾—UrlResource
 		res = ac.getResource("file:D:/eclipse/workspace/resourcedemo/src/resource1.xml");
 		
-		//»ñµÃClassPathResource
+		//è·å¾—ClassPathResource
 		res = ac.getResource("classpath:resource1.xml");
 		
-		//»ñµÃFileSystemResource
+		//è·å¾—FileSystemResource
 		res = ac.getResource("D:/eclipse/workspace/resourcedemo/src/resource1.xml");
 	}
 	

@@ -12,40 +12,46 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 
 /**
- * Ö¤ÊµResourceµÄ¸÷ÖÖÓÃ·¨
  * 
- * @author worldheart
- *
+ * <pre>
+ * è¯å®Resourceçš„å„ç§ç”¨æ³•ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class ResourceDemo1 {
 
-	protected static final Log log = LogFactory.getLog(ResourceDemo1.class);
+	private static final Log log = LogFactory.getLog(ResourceDemo1.class);
 	
 	public static void main(String[] args){
 		
-		//ÔÚclasspath¸ùÂ·¾¶²éÕÒresource1.xml
+		//åœ¨classpathæ ¹è·¯å¾„æŸ¥æ‰¾resource1.xml
 		Resource res = new ClassPathResource("resource1.xml");
 		new XmlBeanFactory(res).getBean("testBean");
 		
-		//ÔÚtestÄ¿Â¼¶¨Î»resource2.xml
+		//åœ¨testç›®å½•å®šä½resource2.xml
 		res = new ClassPathResource("test/resource2.xml");
 		new XmlBeanFactory(res).getBean("testBean");
 		
-		//ÔÚTestBeanÀàËùÔÚÄ¿Â¼¶¨Î»resource2.xml
+		//åœ¨TestBeanç±»æ‰€åœ¨ç›®å½•å®šä½resource2.xml
 		res = new ClassPathResource("resource2.xml", TestBean.class);
 		new XmlBeanFactory(res).getBean("testBean");
 
-		//Ö±½Ó´«ÈëÎÄ¼şÂ·¾¶
+		//ç›´æ¥ä¼ å…¥æ–‡ä»¶è·¯å¾„
 		res = new FileSystemResource("D:/eclipse/workspace/resourcedemo/src/test/resource2.xml");
 		new XmlBeanFactory(res).getBean("testBean");
 		
-		//½«¹¹½¨µÄFile Handler´«Èëµ½FileSystemResourceÖĞ
+		//å°†æ„å»ºçš„File Handlerä¼ å…¥åˆ°FileSystemResourceä¸­
 		File file = new File("D:/eclipse/workspace/resourcedemo/src/resource1.xml");
 		res = new FileSystemResource(file);
 		new XmlBeanFactory(res).getBean("testBean");
 		
 		try{
-			//Ö§³Öfile:¡¢http:¡¢ftp:¡¢µÈÇ°×º£¬ÕâĞ©¶¼ÊÇ±ê×¼µÄURL¸ñÊ½
+			//æ”¯æŒfile:ã€http:ã€ftp:ã€ç­‰å‰ç¼€ï¼Œè¿™äº›éƒ½æ˜¯æ ‡å‡†çš„URLæ ¼å¼
 			res = new UrlResource("file:D:/eclipse/workspace/resourcedemo/src/resource1.xml");
 			new XmlBeanFactory(res).getBean("testBean");
 		} catch(MalformedURLException mue){

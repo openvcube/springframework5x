@@ -6,13 +6,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * ����FactoryBean��ʹ��
  * 
- * @author worldheart
+ * <pre>
+ * 各类FactoryBean的使用。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class PropertyPathDemo {
 
-	protected static final Log log = LogFactory.getLog(PropertyPathDemo.class);
+	private static final Log log = LogFactory.getLog(PropertyPathDemo.class);
 
 	public static void main(String[] args) {
 		ApplicationContext ac = new ClassPathXmlApplicationContext("propertypath.xml");
