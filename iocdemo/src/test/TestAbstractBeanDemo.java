@@ -6,13 +6,20 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * 演示抽象Bean和子Bean
  * 
- * @author worldheart
+ * <pre>
+ * 演示抽象Bean和子Bean。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class TestAbstractBeanDemo {
 
-	protected static final Log log = LogFactory.getLog(TestAbstractBeanDemo.class);
+	private static final Log log = LogFactory.getLog(TestAbstractBeanDemo.class);
 
 	public static void main(String[] args) {
 		//实例化IoC容器

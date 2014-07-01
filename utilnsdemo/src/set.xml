@@ -16,15 +16,14 @@
 		</property>
 	</bean>
 
-	<bean id="collectionBean" class="test.CollectionBean" 
-			parent="abstractCollectionBean">
-			<property name="set">
-				<set merge="true" value-type="java.lang.String">
-					<value>set1</value>
-					<idref bean="abstractCollectionBean"/>
-					<null/>
-				</set>
-			</property>
+	<bean id="collectionBean" class="test.CollectionBean" parent="abstractCollectionBean">
+		<property name="set">
+			<set merge="true" value-type="java.lang.String">
+				<value>set1</value>
+				<idref bean="abstractCollectionBean"/>
+				<null/>
+			</set>
+		</property>
 	</bean>
 		
 	<bean id="set" class="org.springframework.beans.factory.config.SetFactoryBean">

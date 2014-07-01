@@ -6,13 +6,20 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * 演示通过构造器注入factory-bean、factory-method所需的参数
  * 
- * @author worldheart
+ * <pre>
+ * 别名演示。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class AliasDemo {
 
-	protected static final Log log = LogFactory.getLog(AliasDemo.class);
+	private static final Log log = LogFactory.getLog(AliasDemo.class);
 
 	public void getContent() {
 		// 实例化IoC容器

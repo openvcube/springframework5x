@@ -23,7 +23,7 @@ public class DependsOnDemo {
 	public static void main(String[] args) {
 
 		//dependson1.xml或dependson2.xml
-		new ClassPathXmlApplicationContext("dependson1.xml");
+		new ClassPathXmlApplicationContext("dependson2.xml");
 
 	}
 

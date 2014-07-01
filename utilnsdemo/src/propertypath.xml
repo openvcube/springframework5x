@@ -10,7 +10,7 @@
 	<bean id="propertyPath" 
 		class="org.springframework.beans.factory.config.PropertyPathFactoryBean">
 		<property name="targetBeanName">
-			<idref local="helloWorld"/>
+			<idref bean="helloWorld"/>
 		</property>
 		<property name="propertyPath" value="hello"/>
 	</bean>
