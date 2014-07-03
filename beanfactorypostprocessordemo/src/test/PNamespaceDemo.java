@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * 
  * <pre>
- * 演示PropertyPlaceholderConfigurer的使用。
+ * 演示<p/>命名空间的使用。
  * </pre>
  * @author http://www.open-v.com
  * @version 1.00.00

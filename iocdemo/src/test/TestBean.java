@@ -12,7 +12,6 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEventPublisher;
@@ -40,7 +39,7 @@ public class TestBean implements ITestBean, BeanNameAware,
 	ApplicationEventPublisherAware, MessageSourceAware,
 	ApplicationContextAware, InitializingBean, DisposableBean  {
 
-	protected static final Log log = LogFactory.getLog(TestBean.class);
+	private static final Log log = LogFactory.getLog(TestBean.class);
 	
 	private String beanName;
 	

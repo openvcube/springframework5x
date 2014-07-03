@@ -7,7 +7,7 @@
 	   			http://www.springframework.org/schema/context 
 	   		http://www.springframework.org/schema/context/spring-context.xsd">
 
-     <bean name="testBean" init-method="start" destroy-method="finish"
+    <bean name="testBean" init-method="start" destroy-method="finish"
           class="test.TestBean"/>
           
     <context:annotation-config/>

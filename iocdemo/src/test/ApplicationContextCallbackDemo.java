@@ -6,13 +6,20 @@ import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * 演示回调接口集合的使用
  * 
- * @author worldheart
+ * <pre>
+ * 演示回调接口集合的使用。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class ApplicationContextCallbackDemo {
 
-	protected static final Log log = LogFactory.getLog(ApplicationContextCallbackDemo.class);
+	private static final Log log = LogFactory.getLog(ApplicationContextCallbackDemo.class);
 
 	public String getContent(){
 		//实例化IoC容器

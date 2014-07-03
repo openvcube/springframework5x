@@ -20,7 +20,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class FileHelloStrImpl implements IHelloStr {
 	
-    protected static final Log log = LogFactory.getLog(FileHelloStrImpl.class);
+    private static final Log log = LogFactory.getLog(FileHelloStrImpl.class);
 
     private String propfilename;
     
