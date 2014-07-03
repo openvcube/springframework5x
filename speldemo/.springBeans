@@ -7,8 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>src/dependson1.xml</config>
-		<config>src/dependson2.xml</config>
+		<config>src/spel.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
