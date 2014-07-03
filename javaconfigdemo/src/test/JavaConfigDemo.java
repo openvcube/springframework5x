@@ -6,10 +6,22 @@ import org.springframework.config.java.annotation.Bean;
 import org.springframework.config.java.annotation.Configuration;
 import org.springframework.config.java.context.JavaConfigApplicationContext;
 
+/**
+ * 
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
+ */
 @Configuration
 public class JavaConfigDemo {
 
-	protected static final Log log = 
+	private static final Log log = 
 		LogFactory.getLog(JavaConfigDemo.class);
 
 	@Bean

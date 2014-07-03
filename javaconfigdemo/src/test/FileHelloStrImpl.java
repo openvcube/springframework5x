@@ -9,13 +9,20 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * »ùÓÚÎÄ¼şĞÎÊ½£¬¶ÁÈ¡HelloWorldËùĞèµÄ×Ö·û´®¡£
  * 
- * @author worldheart
+ * <pre>
+ * åŸºäºæ–‡ä»¶å½¢å¼ï¼Œè¯»å–HelloWorldæ‰€éœ€çš„å­—ç¬¦ä¸²ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class FileHelloStrImpl implements IHelloStr {
 	
-    protected static final Log log = LogFactory.getLog(FileHelloStrImpl.class);
+    private static final Log log = LogFactory.getLog(FileHelloStrImpl.class);
 
     private String propfilename;
     
@@ -28,12 +35,12 @@ public class FileHelloStrImpl implements IHelloStr {
 
         try {
             Properties properties = new Properties();
-            //¶ÁÈëÊäÈëÁ÷
+            //è¯»å…¥è¾“å…¥æµ
             InputStream is = getClass().getClassLoader().getResourceAsStream(
                     propfilename);
             properties.load(is);
             is.close();
-            //»ñµÃhelloworld¼ü¶ÔÓ¦µÄÈ¡Öµ
+            //è·å¾—helloworldé”®å¯¹åº”çš„å–å€¼
             helloworld = properties.getProperty("helloworld");
         } catch (FileNotFoundException ex) {
             log.error(ex);
