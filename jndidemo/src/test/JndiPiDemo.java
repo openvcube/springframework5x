@@ -11,23 +11,27 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-
-
 /**
- * ��ʾJndiObjectFactoryBean��ʹ��
  * 
- * @author worldheart
- *
+ * <pre>
+ * 演示JndiObjectFactoryBean的使用。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class JndiPiDemo {
 
-	protected static final Log log = LogFactory.getLog(JndiPiDemo.class);
+	private static final Log log = LogFactory.getLog(JndiPiDemo.class);
 	
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("jndipi.xml");
 		
-		//���javax.jms.Queue����
+		//获得javax.jms.Queue对象
 		Queue tq = (Queue)ac.getBean("tq");
 		try{
 			log.info(tq.getQueueName());

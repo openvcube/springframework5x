@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.6.0.201405280551-M1]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/fs.xml</config>
+		<config>src/jndienv.xml</config>
+		<config>src/jndilookup.xml</config>
+		<config>src/jndiofb.xml</config>
+		<config>src/jndipi.xml</config>
+		<config>src/jnditemplate.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

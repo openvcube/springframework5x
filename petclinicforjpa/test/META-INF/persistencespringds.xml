@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+             	http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+             version="1.0">
+    <persistence-unit name="jpaspringdemo" transaction-type="RESOURCE_LOCAL">
+    	<non-jta-data-source>dataSource</non-jta-data-source>
+        <class>test.entityjpa.Owners</class>
+        <class>test.entityjpa.Pets</class>
+        <class>test.entityjpa.Specialties</class>
+        <class>test.entityjpa.Types</class>
+        <class>test.entityjpa.Vets</class>
+        <class>test.entityjpa.Visits</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    </persistence-unit>
+</persistence>

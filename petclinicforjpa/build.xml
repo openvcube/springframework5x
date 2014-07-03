@@ -1,0 +1,35 @@
+<project name="petclinicforjpa" 
+	default="hbmandjavaannotationversion" basedir=".">
+	<property name="src.dir" value="src"/>
+	<property name="hibernatetools.dir" value="hibernatetools"/>
+	<property name="lib.dir" value="lib"/>
+	<property name="weblib.dir" value="context/WEB-INF/lib"/>
+
+	<path id="all-libs">
+		<fileset dir="${weblib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${lib.dir}">
+			<include name="*.jar"/>
+		</fileset>
+		<fileset dir="${hibernatetools.dir}">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+	
+	<taskdef 
+	     name="hibernatetool" 
+	     classname="org.hibernate.tool.ant.HibernateToolTask" 
+		 classpathref="all-libs"/>
+	
+	<target name="hbmandjavaannotationversion">
+		<hibernatetool destdir="test">
+			<jdbcconfiguration configurationfile="hibernatetools/hibernate.cfg.xml" 
+					revengfile="hibernatetools/hibernate.reveng.xml"
+					packagename="test.entityjpa"/>
+			<hbm2java jdk5="true" ejb3="true"/>
+			<hbm2doc destdir="hbmdocannotation"/>
+		</hibernatetool>	
+	</target>
+	
+</project>

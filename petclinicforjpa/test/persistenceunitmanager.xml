@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:p="http://www.springframework.org/schema/p"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean id="dataSource" 
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
+		<property name="url" value="jdbc:hsqldb:hsql://localhost:9001"/>
+		<property name="username" value="sa"/>
+		<property name="password" value=""/>
+	</bean>
+
+	<bean id="entityManagerFactory" 
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="generateDdl" value="false"/>
+				<property name="showSql" value="true"/>
+				<property name="database" value="HSQL"/>
+			</bean>
+		</property>
+		<property name="jpaProperties" ref="jpaProperties"/>
+		<property name="persistenceUnitManager" ref="persistenceUnitManager"/>
+	</bean>
+	
+	<bean id="persistenceUnitManager" 
+		class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+		<property name="defaultDataSource" ref="dataSource"/>
+		<property name="defaultPersistenceUnitRootLocation" value="classpath:"/>
+		<property name="persistenceXmlLocations">
+			<list>
+				<value>/META-INF/persistencespring.xml</value>
+			</list>
+		</property>		
+	</bean>	
+	
+	<bean id="jpaProperties" 
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">true</prop>
+			</props>
+		</property>
+	</bean>	
+	
+	<bean id="transactionManager" 
+		class="org.springframework.orm.jpa.JpaTransactionManager"
+		p:entityManagerFactory-ref="entityManagerFactory"/>
+
+	<bean id="jpaTemplateOper" 
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		p:transactionManager-ref="transactionManager">
+		<property name="target">
+			<bean class="test.JpaTemplateOper"
+				p:entityManagerFactory-ref="entityManagerFactory"/>
+		</property>
+		<property name="transactionAttributes">
+			<props>
+				<prop key="test*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	
+</beans>

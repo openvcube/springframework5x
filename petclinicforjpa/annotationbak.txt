@@ -1,0 +1,5 @@
+@javax.persistence.NamedQuery(name="findOwnersByLastName", 
+  query="from Owners own where own.lastName like :lastName")
+@SqlResultSetMapping(name="getOwners", entities = 
+        @EntityResult(entityClass=test.entityjpa.Owners.class)
+)

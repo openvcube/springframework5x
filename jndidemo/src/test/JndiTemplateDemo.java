@@ -13,34 +13,38 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jndi.JndiCallback;
 import org.springframework.jndi.JndiTemplate;
 
-
-
 /**
- * ÑİÊ¾JndiObjectFactoryBeanµÄÊ¹ÓÃ
  * 
- * @author worldheart
- *
+ * <pre>
+ * æ¼”ç¤ºJndiObjectFactoryBeançš„ä½¿ç”¨ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class JndiTemplateDemo {
 
-	protected static final Log log = LogFactory.getLog(JndiTemplateDemo.class);
+	private static final Log log = LogFactory.getLog(JndiTemplateDemo.class);
 	
 	public static void main(String[] args) {
 		
 		ApplicationContext ac = new ClassPathXmlApplicationContext("jnditemplate.xml");
 		
-		//»ñµÃJndiTemplate
+		//è·å¾—JndiTemplate
 		JndiTemplate jt = (JndiTemplate)ac.getBean("jndiTemplate");
 
 		String jndiTemplateStr = new String("jndiTemplate");
 		final String jndiCallbackStr = new String("jndiCallbackStr");
 		
 		try{
-			//½«¶ÔÏó°ó¶¨µ½JNDIÊ÷ÉÏ
+			//å°†å¯¹è±¡ç»‘å®šåˆ°JNDIæ ‘ä¸Š
 			jt.bind("jndiTemplate",jndiTemplateStr);
-			//´òÓ¡³ö²éÕÒ½á¹û
+			//æ‰“å°å‡ºæŸ¥æ‰¾ç»“æœ
 			log.info(jt.lookup("jndiTemplate"));
-			//´ÓJNDIÊ÷ÉÏÈ¥³ı¶ÔÏóµÄ°ó¶¨
+			//ä»JNDIæ ‘ä¸Šå»é™¤å¯¹è±¡çš„ç»‘å®š
 			jt.unbind("jndiTemplate");
 			
 			jt.execute(new JndiCallback(){

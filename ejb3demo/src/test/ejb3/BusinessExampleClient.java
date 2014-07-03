@@ -3,27 +3,33 @@ package test.ejb3;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * EJB 3.0�����Զ�̿ͻ���
  * 
- * @author worldheart
+ * <pre>
+ * EJB 3.0组件的远程客户端。
+ * </pre>
  * 
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * 
+ *          <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容:
+ * </pre>
  */
 public class BusinessExampleClient {
 
-	protected static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(BusinessExampleClient.class);
 
 	public static void main(String[] args) throws Exception {
 
-		//jndiofb.xml��access.xml��remoteslsb.xml
+		// jndiofb.xml、access.xml、remoteslsb.xml
 		ListableBeanFactory lbf = new ClassPathXmlApplicationContext(
 				"jndiofb.xml");
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(lbf);
-		IBusinessInterface se = gbfa.getBean("sbe");
+		IBusinessInterface se = (IBusinessInterface) lbf.getBean("sbe");
 		log.info(se.getStr("worldheart"));
 
 	}

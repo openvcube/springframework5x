@@ -25,14 +25,14 @@ public class JavaConfigDemo {
 	}
 	
 	public static void main(String[] args) {
-		//´Ó×¢½âÖĞ×°ÔØDIÈİÆ÷ÅäÖÃÔªÊı¾İ
+		//ä»æ³¨è§£ä¸­è£…è½½DIå®¹å™¨é…ç½®å…ƒæ•°æ®
 		JavaConfigApplicationContext context = 
 				new JavaConfigApplicationContext(JavaConfigDemo.class);
 		
-		//»ñµÃÊÜ¹ÜBean
+		//è·å¾—å—ç®¡Bean
 		IHelloWorld hw = context.getBean(IHelloWorld.class);
 
-		//·µ»Ø×Ö·û´®
+		//è¿”å›å­—ç¬¦ä¸²
 		log.info(hw.getContent());
 	}
 

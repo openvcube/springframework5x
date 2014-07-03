@@ -6,7 +6,6 @@ import javax.jms.Session;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
@@ -14,22 +13,28 @@ import org.springframework.jms.core.MessageCreator;
 
 /**
  * 
- * @author worldheart
- * 
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class JmsTemplateContainerDemo {
 
-	protected static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(JmsTemplateContainerDemo.class);
 
 	public static void main(String[] args) {
-		//container.xml��jmscontainer.xml
+		//container.xml��jmscontainer.xml
 		AbstractApplicationContext ac = new ClassPathXmlApplicationContext(
 				"container.xml");
 		ac.registerShutdownHook();
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(ac);
 
-		JmsTemplate jt = gbfa.getBean("jmsTemplate");
+		JmsTemplate jt = (JmsTemplate)ac.getBean("jmsTemplate");
 		
 		jt.send(new MessageCreator() {
 			public Message createMessage(Session session) throws JMSException {

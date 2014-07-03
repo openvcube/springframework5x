@@ -1,6 +1,3 @@
-/**
- * 
- */
 package test;
 
 import java.util.Hashtable;
@@ -13,41 +10,47 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * File SystemÊ¾ÀıÊ¹ÓÃ
  * 
- * @author worldheart
- * 
+ * <pre>
+ * File Systemç¤ºä¾‹ä½¿ç”¨ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class FsTestClient {
 
-	protected static final Log log = LogFactory.getLog(FsTestClient.class);
+	private static final Log log = LogFactory.getLog(FsTestClient.class);
 
 	public static void main(String[] args) {
 		
 		Hashtable<String, String> env = new Hashtable<String, String>(2);
 		
-		//Éè¶¨ÉÏÏÂÎÄ¹¤³§
+		//è®¾å®šä¸Šä¸‹æ–‡å·¥å‚
 		env.put(Context.INITIAL_CONTEXT_FACTORY,
 				"com.sun.jndi.fscontext.RefFSContextFactory");
 		
-		//ÉèÖÃÎÄ¼şÏµÍ³Â·¾¶(×¢Òâ£¬¿ª·¢ÕßĞèÒªÒÀ¾İ×ÔÉíµÄ»úÆ÷ĞŞ¸Ä"file:d://eclipse")
-		env.put(Context.PROVIDER_URL, "file:d://eclipse");
+		//è®¾ç½®æ–‡ä»¶ç³»ç»Ÿè·¯å¾„
+		env.put(Context.PROVIDER_URL, "file:d://sts-bundle//workspace//springframework40");
 		
 		Context initCtx = null;
 		try {
-			//»ñµÃ³õÊ¼»¯ÉÏÏÂÎÄ
+			//è·å¾—åˆå§‹åŒ–ä¸Šä¸‹æ–‡
 			initCtx = new InitialContext(env);
 			
-			//½èÖúÓÚJNDI£¬²éÕÒÎÄ¼ş
-			Object fc = initCtx.lookup("eclipse.ini");
+			//å€ŸåŠ©äºJNDIï¼ŒæŸ¥æ‰¾æ–‡ä»¶
+			Object fc = initCtx.lookup("README.md");
 						
 			log.info(fc);
 		} catch (NamingException ne) {
-			//´¦ÀíÃüÃûÒì³£
+			//å¤„ç†å‘½åå¼‚å¸¸
 			log.error("", ne);
 		} finally {
 			try {
-				//¹Ø±ÕÉÏÏÂÎÄ
+				//å…³é—­ä¸Šä¸‹æ–‡
 				initCtx.close();
 			} catch (NamingException ne) {
 				;
