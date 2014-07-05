@@ -3,15 +3,21 @@ package org.springframework.samples;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.samples.petclinic.Clinic;
 import org.springframework.samples.petclinic.Owner;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class MainTestForTransactionDefinition {
 
@@ -19,10 +25,9 @@ public class MainTestForTransactionDefinition {
 	
 	public static void main(String[] args) {		
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("tm.xml");		
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);		
 		
-		//ע�⣬���ܹ�ʹ�á�clinicTarget��
-		final Clinic clinic = gbfa.getBean("clinic");
+		//注意，不能够使用“clinicTarget”
+		final Clinic clinic = (Clinic)cbf.getBean("clinic");
 		
 		final Owner owner = new Owner();
 

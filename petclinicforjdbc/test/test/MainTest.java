@@ -3,26 +3,31 @@ package test;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * 
- * @author worldheart
- * 
+ * <pre>
+ * ç¨‹åºçš„ä¸­æ–‡åç§°ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class MainTest {
 
 	public static void main(String[] args) {
 
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("ata.xml");
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);
 
-		DataSource ds = gbfa.getBean("dataSource");
+		DataSource ds = (DataSource)cbf.getBean("dataSource");
 		
-		//·ÇÊÜ¹ÜBean£¬ÕâÖ»ÊÇÊµÀı»¯ÆÕÍ¨µÄJava¶ÔÏó
+		//éå—ç®¡Beanï¼Œè¿™åªæ˜¯å®ä¾‹åŒ–æ™®é€šçš„Javaå¯¹è±¡
 		TransactionOpera to = new TransactionOpera();
-		//½øĞĞÁËÒ»´ÎÊÂÎñĞÔ²Ù×÷
+		//è¿›è¡Œäº†ä¸€æ¬¡äº‹åŠ¡æ€§æ“ä½œ
 		to.updateDB(ds);
 
 	}

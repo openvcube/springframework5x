@@ -12,8 +12,15 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * ç¨‹åºçš„ä¸­æ–‡åç§°ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class HSQLJdbcDemo {
 
@@ -21,7 +28,7 @@ public class HSQLJdbcDemo {
 	
 	public static void main(String[] args) {		
 		try {
-			//×°ÔØJDBCÇı¶¯
+			//è£…è½½JDBCé©±åŠ¨
 			Class.forName("org.hsqldb.jdbcDriver");
 		} catch (ClassNotFoundException e) {
 			log.error("", e);
@@ -32,11 +39,11 @@ public class HSQLJdbcDemo {
 		prop.setProperty("password", "");
 				
 		try {
-			//´«ÈëÁ¬½ÓURLºÍÏà¹ØÊôĞÔ
+			//ä¼ å…¥è¿æ¥URLå’Œç›¸å…³å±æ€§
 			Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost:9001", prop);
-			//´´½¨Statement
+			//åˆ›å»ºStatement
 			Statement stat = conn.createStatement();
-			//Ö´ĞĞSQLÓï¾ä£¬²¢·µ»Ø½á¹û¼¯
+			//æ‰§è¡ŒSQLè¯­å¥ï¼Œå¹¶è¿”å›ç»“æœé›†
 			ResultSet rs = stat.executeQuery("select * from pets");
 			while(rs.next()){
 				StringBuilder sb = new StringBuilder("id:" + rs.getInt("id"));
@@ -46,7 +53,7 @@ public class HSQLJdbcDemo {
 				sb.append(",owner_id:" + rs.getInt("owner_id"));
 				log.info(sb.toString());
 			}
-			//¹Ø±ÕÏà¹Ø×ÊÔ´
+			//å…³é—­ç›¸å…³èµ„æº
 			rs.close();
 			stat.close();
 			conn.close();

@@ -1,7 +1,6 @@
 package org.springframework.samples;
 
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.samples.petclinic.Clinic;
 import org.springframework.samples.petclinic.Owner;
@@ -11,16 +10,22 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class MainTestForCallbackPreferringPlatformTransactionManager {
 
 	public static void main(String[] args) {		
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("tm.xml");		
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);
 		
-		Clinic clinic = gbfa.getBean("hsqlClinic");
+		Clinic clinic = (Clinic)cbf.getBean("hsqlClinic");
 		
 		Owner owner = new Owner();
 
@@ -32,7 +37,7 @@ public class MainTestForCallbackPreferringPlatformTransactionManager {
 		
 		DefaultTransactionDefinition dtd = new DefaultTransactionDefinition();
 		dtd.setTimeout(120);
-		PlatformTransactionManager ptm = gbfa.getBean("transactionManager");
+		PlatformTransactionManager ptm = (PlatformTransactionManager)cbf.getBean("transactionManager");
 		TransactionStatus ts = ptm.getTransaction(dtd); 
 		clinic.storeOwner(owner);
 		ptm.commit(ts);

@@ -12,7 +12,6 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.CallableStatementCallback;
@@ -27,8 +26,15 @@ import org.springframework.jdbc.object.StoredProcedure;
 
 /**
  * 
- * @author worldheart
- * 
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class MainTestForStoredProcedure {
 
@@ -38,10 +44,9 @@ public class MainTestForStoredProcedure {
 	public static void main(String[] args) {
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext(
 				"jdbctemplate.xml");
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);
 
-		JdbcTemplate jt = gbfa.getBean("jdbcTemplate");
-		DataSource ds = gbfa.getBean("dataSource");
+		JdbcTemplate jt = (JdbcTemplate)cbf.getBean("jdbcTemplate");
+		DataSource ds = (DataSource)cbf.getBean("dataSource");
 
 		log.info(jt.execute("{call show_sal(?, ?, ?)}",
 				new CallableStatementCallback() {

@@ -35,7 +35,7 @@ public class OwnerTests {
 		ReflectionTestUtils.setField(owner, "address", 
 					"GuangZhou1", String.class);
 		log.info(owner.getAddress());
-		//可以将address替换成setAddress
+		//鍙互灏哸ddress鏇挎崲鎴恠etAddress
 		ReflectionTestUtils.invokeSetterMethod(owner, "address", 
 					"GuangZhou2", String.class);
 		log.info(owner.getAddress());

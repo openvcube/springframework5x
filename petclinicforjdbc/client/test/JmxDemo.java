@@ -14,26 +14,33 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 
- * @author worldheart
- * 
+ * <pre>
+ * ç¨‹åºçš„ä¸­æ–‡åç§°ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class JmxDemo {
 	
-	protected static final Log log = LogFactory.getLog(JmxDemo.class);
+	private static final Log log = LogFactory.getLog(JmxDemo.class);
 
 	public static void main(String[] args) throws MalformedObjectNameException,
 			NullPointerException, InstanceAlreadyExistsException,
 			MBeanRegistrationException, NotCompliantMBeanException,
 			InterruptedException {
-		//´´½¨JMX·şÎñÆ÷
+		//åˆ›å»ºJMXæœåŠ¡å™¨
 		MBeanServer mbs = ManagementFactory.getPlatformMBeanServer();
-		//¸ø¶¨MBean×é¼şµÄÃû³Æ
+		//ç»™å®šMBeanç»„ä»¶çš„åç§°
 		ObjectName on = new ObjectName("jmxdemo:ui=UserInfo");
 
 		UserInfoMBean ui = new UserInfo();
 		ui.setUserName("spring");
 		ui.setPassword("dragon");
-		//	×¢²áMBean×é¼ş
+		//	æ³¨å†ŒMBeanç»„ä»¶
 		mbs.registerMBean(ui, on);
 
 		while (true) {

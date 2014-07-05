@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.samples.petclinic.Clinic;
 import org.springframework.samples.petclinic.Owner;
@@ -16,8 +15,15 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class MainTestForTransactionTemplate {
 
@@ -25,11 +31,10 @@ public class MainTestForTransactionTemplate {
 	
 	public static void main(String[] args) {		
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("tm.xml");		
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);		
 		
-		final Clinic clinic = gbfa.getBean("clinicTarget");
+		final Clinic clinic = (Clinic)cbf.getBean("clinicTarget");
 		
-		final TransactionTemplate tt = gbfa.getBean("transactionTemplate");		
+		final TransactionTemplate tt = (TransactionTemplate)cbf.getBean("transactionTemplate");		
 
 		List list = (List)tt.execute(new TransactionCallback(){
 			public Object doInTransaction(TransactionStatus status) {				

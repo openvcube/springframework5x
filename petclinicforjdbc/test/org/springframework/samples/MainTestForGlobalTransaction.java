@@ -11,8 +11,15 @@ import org.apache.commons.logging.LogFactory;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * ç¨‹åºçš„ä¸­æ–‡åç§°ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class MainTestForGlobalTransaction {
 
@@ -26,7 +33,7 @@ public class MainTestForGlobalTransaction {
 			ut = (UserTransaction) ctx.lookup("java:comp/UserTransaction");
 			ut.begin();
 			
-			//¶ÔXA×ÊÔ´½øĞĞCRUD²Ù×÷£¬±ÈÈçXA-JMS¡¢XA-Connection
+			//å¯¹XAèµ„æºè¿›è¡ŒCRUDæ“ä½œï¼Œæ¯”å¦‚XA-JMSã€XA-Connection
 			//.....
 			
 			ut.commit();
@@ -34,16 +41,16 @@ public class MainTestForGlobalTransaction {
 			log.error("", ne);
 		} catch(SystemException se){
 			log.error("", se);
-			//´¦Àíut.rollback()
+			//å¤„ç†ut.rollback()
 		} catch(NotSupportedException nse){
 			log.error("", nse);
-			//´¦Àíut.rollback()
+			//å¤„ç†ut.rollback()
 		} catch(RollbackException re){
 			log.error("", re);
-			//´¦Àíut.rollback()
+			//å¤„ç†ut.rollback()
 		} catch(Exception exe){
 			log.error("", exe);
-			//´¦ÀíÒì³£
+			//å¤„ç†å¼‚å¸¸
 		}
 		
 	}

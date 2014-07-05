@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
@@ -17,8 +16,15 @@ import org.springframework.samples.petclinic.Person;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class MainTestForSimpleJdbcTemplate {
 
@@ -27,9 +33,8 @@ public class MainTestForSimpleJdbcTemplate {
 	public static void main(String[] args) {		
 		ListableBeanFactory cbf = 
 			new ClassPathXmlApplicationContext("simplejdbctemplate.xml");		
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);
 		
-		SimpleJdbcTemplate sjt = gbfa.getBean("simpleJdbcTemplate");
+		SimpleJdbcTemplate sjt = (SimpleJdbcTemplate)cbf.getBean("simpleJdbcTemplate");
 				
 		List<Person> perList = sjt.query("select * from vets", 
 				new ParameterizedRowMapper<Person>(){
@@ -51,7 +56,7 @@ public class MainTestForSimpleJdbcTemplate {
 					ParameterizedSingleColumnRowMapper.newInstance(String.class));
 		log.info(firstNameList);
 		
-		IDaoSupport sjd = gbfa.getBean("simpleJdbcDaoSupportImpl");
+		IDaoSupport sjd = (IDaoSupport)cbf.getBean("simpleJdbcDaoSupportImpl");
 		sjd.operationAll();
 	}
 

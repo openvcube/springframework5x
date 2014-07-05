@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.InterruptibleBatchPreparedStatementSetter;
@@ -15,8 +14,15 @@ import org.springframework.jdbc.core.support.AbstractInterruptibleBatchPreparedS
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class MainTestForBatchPreparedStatementSetter {
 
@@ -25,9 +31,8 @@ public class MainTestForBatchPreparedStatementSetter {
 	public static void main(String[] args) {
 		
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("jdbctemplate.xml");		
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);
 		
-		JdbcTemplate jt = gbfa.getBean("jdbcTemplate");
+		JdbcTemplate jt = (JdbcTemplate)cbf.getBean("jdbcTemplate");
 		
 		final int[] no = new int[]{7369,7499,7521,7566,7654,7698};
 		

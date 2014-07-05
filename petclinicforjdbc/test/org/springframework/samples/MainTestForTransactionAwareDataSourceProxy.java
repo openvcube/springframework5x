@@ -9,7 +9,6 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.ListableBeanFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.support.JdbcUtils;
 import org.springframework.transaction.TransactionStatus;
@@ -18,8 +17,15 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * ç¨‹åºçš„ä¸­æ–‡åç§°ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class MainTestForTransactionAwareDataSourceProxy {
 
@@ -28,13 +34,12 @@ public class MainTestForTransactionAwareDataSourceProxy {
 	public static void main(String[] args) {
 		
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("dsproxy.xml");		
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(cbf);
 		
-		TransactionTemplate tt = gbfa.getBean("transactionTemplate");
+		TransactionTemplate tt = (TransactionTemplate)cbf.getBean("transactionTemplate");
 		
-		//Èç¹û½«dataSourceÌæ»»³ÉdataSourceTarget£¬
-		//Ôò¼´Ê¹status.setRollbackOnly()Ö´ĞĞÁË£¬last_name»¹ÊÇ±»¸üĞÂÁË
-		final DataSource ds = gbfa.getBean("dataSource");
+		//å¦‚æœå°†dataSourceæ›¿æ¢æˆdataSourceTargetï¼Œ
+		//åˆ™å³ä½¿status.setRollbackOnly()æ‰§è¡Œäº†ï¼Œlast_nameè¿˜æ˜¯è¢«æ›´æ–°äº†
+		final DataSource ds = (DataSource)cbf.getBean("dataSource");
 		
 		tt.execute(new TransactionCallbackWithoutResult(){
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
@@ -45,7 +50,7 @@ public class MainTestForTransactionAwareDataSourceProxy {
 					stat = conn.createStatement();
 					log.info(stat.executeUpdate(
 							"update owners set last_name = 'Luo' where telephone = '16068008'"));
-					//±êÊ¶ÊÂÎñ»Ø¹ö
+					//æ ‡è¯†äº‹åŠ¡å›æ»š
 					status.setRollbackOnly();
 				}catch(SQLException exec){
 					log.error("", exec);

@@ -13,29 +13,35 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * ç¨‹åºçš„ä¸­æ–‡åç§°ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 @Transactional
 public class TransactionOpera {
 
-	protected static final Log log = LogFactory.getLog(TransactionOpera.class);
-	
-	
+	private static final Log log = LogFactory.getLog(TransactionOpera.class);
+		
 	public void updateDB(DataSource ds) {
 		try{
-			//½èÖúÓÚSpringÌá¹©µÄDataSourceUtilsÊµÓÃÀà£¬
-			//»ñµÃµ±Ç°ÊÂÎñÒÑ¾­Õ÷¼¯µÄConnection¶ÔÏó
+			//å€ŸåŠ©äºSpringæä¾›çš„DataSourceUtilså®ç”¨ç±»ï¼Œ
+			//è·å¾—å½“å‰äº‹åŠ¡å·²ç»å¾é›†çš„Connectionå¯¹è±¡
 			Connection conn = DataSourceUtils.getConnection(ds);
 			Statement stat = conn.createStatement();
 			log.info(
 					stat.executeUpdate(
 							"update owners set last_name = 'Luo' where id = 2"));
-			//ĞèÒªÊÖ¹¤¹Ø±ÕStatement£¬µ«ÊÇÎÒÃÇ²»ÄÜ¹»¹Ø±Õconn£¬
-			//ÒòÎªµ±Ç°ÊÂÎñÍê½áÊ±Spring»á¸ºÔğ¹Ø±ÕËü
+			//éœ€è¦æ‰‹å·¥å…³é—­Statementï¼Œä½†æ˜¯æˆ‘ä»¬ä¸èƒ½å¤Ÿå…³é—­connï¼Œ
+			//å› ä¸ºå½“å‰äº‹åŠ¡å®Œç»“æ—¶Springä¼šè´Ÿè´£å…³é—­å®ƒ
 			stat.close();
-			//Å×³öÒì³££¬¿ª·¢Õß¿ÉÒÔÈ¥Êı¾İ¿â¼ì²éµ±Ç°RDBMSÊı¾İÊÇ·ñÒ»ÖÂ£¬
-			//»òÕß¿ÉÒÔ½«ÈçÏÂÓï¾äÆÁ±Îµô
+			//æŠ›å‡ºå¼‚å¸¸ï¼Œå¼€å‘è€…å¯ä»¥å»æ•°æ®åº“æ£€æŸ¥å½“å‰RDBMSæ•°æ®æ˜¯å¦ä¸€è‡´ï¼Œ
+			//æˆ–è€…å¯ä»¥å°†å¦‚ä¸‹è¯­å¥å±è”½æ‰
 			throw new RuntimeException("xx");
 		} catch(SQLException sql){
 			throw new RuntimeException(sql);

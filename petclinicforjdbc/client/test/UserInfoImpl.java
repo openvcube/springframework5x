@@ -10,13 +10,20 @@ import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.jmx.export.notification.NotificationPublisher;
 import org.springframework.jmx.export.notification.NotificationPublisherAware;
 
-
 /**
- * @author worldheart
  * 
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 @ManagedResource(objectName="bean:spring=userInfo",
-		description="userName��password", 
+		description="userName、password", 
 		currencyTimeLimit=20,persistPeriod=100)
 public class UserInfoImpl implements IUserInfo, NotificationPublisherAware {
 
@@ -25,7 +32,7 @@ public class UserInfoImpl implements IUserInfo, NotificationPublisherAware {
 	private String userName;	
 	private String password;
 	
-	//δ��¶��JMX�ͻ��˹���
+	//未暴露给JMX客户端工具
 	public String getPassword() {
 		return password;
 	}
@@ -47,8 +54,8 @@ public class UserInfoImpl implements IUserInfo, NotificationPublisherAware {
 
 	@ManagedOperation()
 	@ManagedOperationParameters(
-			{@ManagedOperationParameter(name="userName",description="�û���"),
-				@ManagedOperationParameter(name="password",description="����")})
+			{@ManagedOperationParameter(name="userName",description="用户名"),
+				@ManagedOperationParameter(name="password",description="密码")})
 	public void updateUserInfo(String userName, String password) {
 		this.userName = userName;
 		this.password = password;
