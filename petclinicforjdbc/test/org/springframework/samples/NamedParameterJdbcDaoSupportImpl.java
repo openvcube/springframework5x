@@ -33,8 +33,8 @@ public class NamedParameterJdbcDaoSupportImpl extends
 		person.setLastName("Luo");
 		SqlParameterSource sps = new BeanPropertySqlParameterSource(person);
 
-		log.info(this.getNamedParameterJdbcTemplate().queryForInt("select count(*) from owners where first_name = :firstName and last_name = :lastName", 
-					sps));
+		log.info(this.getNamedParameterJdbcTemplate().queryForObject("select count(*) from owners where first_name = :firstName and last_name = :lastName", 
+					sps,String.class));
 	}
 
 }

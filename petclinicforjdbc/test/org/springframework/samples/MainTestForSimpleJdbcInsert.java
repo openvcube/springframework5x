@@ -46,7 +46,7 @@ public class MainTestForSimpleJdbcInsert {
 
 		ownerInsert = new SimpleJdbcInsert(dataSource).withTableName("owners")
 				.usingGeneratedKeyColumns("id");
-
+		
 		param = new HashMap<String, Object>();
 		param.put("first_name", "Need");
 		param.put("last_name", "Want");

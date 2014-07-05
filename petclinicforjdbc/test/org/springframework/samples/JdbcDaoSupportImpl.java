@@ -19,7 +19,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 public class JdbcDaoSupportImpl extends
 		JdbcDaoSupport implements IDaoSupport {
 
-	protected static final Log log = LogFactory
+	private static final Log log = LogFactory
 			.getLog(JdbcDaoSupportImpl.class);
 
 	public void operationAll() {

@@ -47,19 +47,19 @@ public class MainTestForJdbcTemplate {
 	private static final Log log = LogFactory.getLog(MainTestForJdbcTemplate.class);
 	
 	public static void main(String[] args) {		
-		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("jdbctemplate.xml");		
+		ListableBeanFactory cbf = new ClassPathXmlApplicationContext("jdbctemplate.xml");	
 		
 		JdbcTemplate jt = (JdbcTemplate)cbf.getBean("jdbcTemplate");
 		
-		jt.execute(new ConnectionCallback(){
-			public Object doInConnection(Connection con) throws SQLException, DataAccessException {
+		jt.execute(new ConnectionCallback<String>(){
+			public String doInConnection(Connection con) throws SQLException, DataAccessException {
 				log.info(con.getMetaData().getDriverName());
-				return null;
+				return con.getMetaData().getDriverName();
 			}
 		});
 		
-		List nameList = (List)jt.execute(new StatementCallback(){
-			public Object doInStatement(Statement stmt) throws SQLException, DataAccessException {
+		List<String> nameList = jt.execute(new StatementCallback<List<String>>(){
+			public List<String> doInStatement(Statement stmt) throws SQLException, DataAccessException {
 				log.info(stmt.getConnection().getMetaData().getDatabaseProductVersion());
 				List<String> nameList = new ArrayList<String>();
 				ResultSet rs = null;
@@ -76,9 +76,9 @@ public class MainTestForJdbcTemplate {
 		});
 		log.info(nameList);
 		
-		List perList = (List)jt.query("select * from vets", 
-				new ResultSetExtractor(){
-						public Object extractData(ResultSet rs) throws SQLException, DataAccessException {
+		List<Person> perList = jt.query("select * from vets", 
+				new ResultSetExtractor<List<Person>>(){
+						public List<Person> extractData(ResultSet rs) throws SQLException, DataAccessException {
 							List<Person> personList = new ArrayList<Person>();
 							while(rs.next()){
 								Person per = new Person();
@@ -118,9 +118,9 @@ public class MainTestForJdbcTemplate {
 		log.info(rcch.getColumnCount()); 
 		log.info(rcch.getRowCount()); 
 		
-		List vetsList = jt.query("select * from vets", 
-				new RowMapper(){
-					public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+		List<Person> vetsList = jt.query("select * from vets", 
+				new RowMapper<Person>(){
+					public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
 						Person pers = new Person();
 						pers.setId(rs.getInt("id"));
 						pers.setFirstName(rs.getString("first_name"));
@@ -134,16 +134,17 @@ public class MainTestForJdbcTemplate {
 		List vList = jt.query("select * from vets", cmrw);
 		log.info(vList);
 
-		SingleColumnRowMapper scrm = new SingleColumnRowMapper();
-		List firstNameList = jt.query("select first_name from vets", scrm);
+		SingleColumnRowMapper<String> scrm = new SingleColumnRowMapper<String>();
+		List<String> firstNameList = jt.query("select first_name from vets", scrm);
 		log.info(firstNameList);
 		
-		BeanPropertyRowMapper bprm = new BeanPropertyRowMapper(Person.class);
-		List personList = jt.query("select * from vets", bprm);
+		BeanPropertyRowMapper<Person> bprm = new BeanPropertyRowMapper<Person>(Person.class);
+		List<Person> personList = jt.query("select * from vets", bprm);
 		log.info(personList);
 		
-		log.info(jt.queryForInt("select count(*) from vets where id = ?", 
-				new Object[]{3}));
+		Integer count = jt.queryForObject("select count(*) from vets where id = ?", 
+				new Object[]{3}, Integer.class); 
+		log.info(count);
 						
 		jt.execute("update owners set address = 'GuangZhou' where telephone = ?", 
 				new PreparedStatementCallback(){
@@ -163,8 +164,8 @@ public class MainTestForJdbcTemplate {
 						ps.setString(2, "Black");
 					}
 				}, 
-				new RowMapper(){
-					public Object mapRow(ResultSet rs, int rowNum) throws SQLException {						
+				new RowMapper<String>(){
+					public String mapRow(ResultSet rs, int rowNum) throws SQLException {						
 						return rs.getString("address");
 					}
 				}));
@@ -175,8 +176,8 @@ public class MainTestForJdbcTemplate {
 						return con.prepareStatement("select address from owners");
 					}
 				}, 
-				new PreparedStatementCallback(){
-					public Object doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
+				new PreparedStatementCallback<List<String>>(){
+					public List<String> doInPreparedStatement(PreparedStatement ps) throws SQLException, DataAccessException {
 						List<String> list = new ArrayList<String>();
 						ResultSet rs = null;
 						try{
