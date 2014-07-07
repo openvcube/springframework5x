@@ -10,8 +10,8 @@
 	<bean id="timer" class="org.springframework.scheduling.timer.TimerFactoryBean">
 		<property name="scheduledTimerTasks">
 			<list>
-				<ref local="listImagesScheduledTask"/>
-				<ref local="checkImagesScheduledTask"/>
+				<ref bean="listImagesScheduledTask"/>
+				<ref bean="checkImagesScheduledTask"/>
 			</list>
 		</property>
 		<property name="daemon" value="true"/>

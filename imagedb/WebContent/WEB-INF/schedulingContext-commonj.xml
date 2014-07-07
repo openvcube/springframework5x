@@ -9,7 +9,7 @@
 		<property name="timerManagerName" value="jndi/timerManagerName" />
 		<property name="scheduledTimerListeners">
 			<list>
-				<ref local="listImagesScheduledTask"/>
+				<ref bean="listImagesScheduledTask"/>
 			</list>
 		</property>
 	</bean>

@@ -10,8 +10,8 @@
 	<bean id="scheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref local="listImagesTrigger"/>
-				<ref local="checkImagesTrigger"/>
+				<ref bean="listImagesTrigger"/>
+				<ref bean="checkImagesTrigger"/>
 			</list>
 		</property>
 		<property name="quartzProperties">
