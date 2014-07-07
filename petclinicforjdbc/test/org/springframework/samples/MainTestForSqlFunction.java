@@ -32,28 +32,26 @@ public class MainTestForSqlFunction {
 		
 		DataSource ds = (DataSource)cbf.getBean("dataSource");
 		
-		SqlFunction sf = new SqlFunction();
-		sf.setDataSource(ds);
-		sf.setSql("select count(*) from owners");
-		sf.compile();	
-		int result = sf.run();
-		log.info(result);
+		SqlFunction<Integer> sfInt = new SqlFunction<Integer>();
+		sfInt.setDataSource(ds);
+		sfInt.setSql("select count(*) from owners");
+		sfInt.compile();
+		int resultInt = sfInt.run();
+		log.info(resultInt);
 		
-		sf = new SqlFunction(ds,"select count(*) from owners where telephone like ? and last_name like ?");
+		sfInt = new SqlFunction<Integer>(ds,"select count(*) from owners where telephone like ? and last_name like ?");
 		//声明参数类型
-		sf.setTypes(new int[]{Types.VARCHAR, Types.VARCHAR});
-		sf.compile();
-		result = sf.run(new Object[]{"16068008","Luo"});
-		log.info(result);
+		sfInt.setTypes(new int[]{Types.VARCHAR, Types.VARCHAR});
+		sfInt.compile();
+		resultInt = sfInt.run(new Object[]{"16068008","Luo"});
+		log.info(resultInt);
 		
-		sf = new SqlFunction(ds,"select address from owners where telephone like ? and last_name like ?");
+		SqlFunction<String> sfStr = new SqlFunction<String>(ds,"select address from owners where telephone like ? and last_name like ?");
 		//声明参数类型
-		sf.setTypes(new int[]{Types.VARCHAR, Types.VARCHAR});
-		//设定返回类型（可选）
-		sf.setResultType(String.class);
-		sf.compile();
-		String resultStr = (String)sf.runGeneric(new Object[]{"16068008","Luo"}); 
-		log.info(resultStr);		
+		sfStr.setTypes(new int[]{Types.VARCHAR, Types.VARCHAR});
+		sfStr.compile();
+		String resultStr = (String)sfStr.runGeneric(new Object[]{"16068008","Luo"}); 
+		log.info(resultStr);
 		
 	}
 

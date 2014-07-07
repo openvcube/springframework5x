@@ -16,5 +16,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/spring-test-4.0.5.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/springframework4.0-libs/ojdbc7.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

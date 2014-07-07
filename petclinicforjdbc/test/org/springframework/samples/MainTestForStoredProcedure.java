@@ -29,11 +29,13 @@ import org.springframework.jdbc.object.StoredProcedure;
  * <pre>
  * 程序的中文名称。
  * </pre>
+ * 
  * @author http://www.open-v.com
  * @version 1.00.00
- * <pre>
+ * 
+ *          <pre>
  * 修改记录
- *    修改后版本:     修改人：  修改日期:     修改内容: 
+ *    修改后版本:     修改人：  修改日期:     修改内容:
  * </pre>
  */
 public class MainTestForStoredProcedure {
@@ -45,12 +47,12 @@ public class MainTestForStoredProcedure {
 		ListableBeanFactory cbf = new ClassPathXmlApplicationContext(
 				"jdbctemplate.xml");
 
-		JdbcTemplate jt = (JdbcTemplate)cbf.getBean("jdbcTemplate");
-		DataSource ds = (DataSource)cbf.getBean("dataSource");
+		JdbcTemplate jt = (JdbcTemplate) cbf.getBean("jdbcTemplate");
+		DataSource ds = (DataSource) cbf.getBean("dataSource");
 
 		log.info(jt.execute("{call show_sal(?, ?, ?)}",
-				new CallableStatementCallback() {
-					public Object doInCallableStatement(CallableStatement cs)
+				new CallableStatementCallback<Float>() {
+					public Float doInCallableStatement(CallableStatement cs)
 							throws SQLException, DataAccessException {
 						cs.setString("enames", "SMITH");
 						cs.setInt("empnos", 7369);
@@ -65,8 +67,8 @@ public class MainTestForStoredProcedure {
 					throws SQLException {
 				return con.prepareCall("{call show_sal(?, ?, ?)}");
 			}
-		}, new CallableStatementCallback() {
-			public Object doInCallableStatement(CallableStatement cs)
+		}, new CallableStatementCallback<Float>() {
+			public Float doInCallableStatement(CallableStatement cs)
 					throws SQLException, DataAccessException {
 				cs.setString("enames", "SMITH");
 				cs.setInt("empnos", 7369);
@@ -75,13 +77,13 @@ public class MainTestForStoredProcedure {
 				return cs.getFloat("sals");
 			}
 		}));
-		
+
 		StoredProcedure sp = new ShowEmpStoredProcedure(ds);
 
 		Map<String, Object> inputParam = new HashMap<String, Object>(2);
 		inputParam.put("enames", "SMITH");
 		inputParam.put("empnos", 7369);
-		
+
 		log.info(sp.execute(inputParam));
 
 		SimpleJdbcCall sjc = new SimpleJdbcCall(ds);
@@ -93,14 +95,14 @@ public class MainTestForStoredProcedure {
 
 		sjc = new SimpleJdbcCall(ds).withProcedureName("show_sal");
 		sjc.declareParameters(new SqlParameter("enames", Types.VARCHAR))
-			.declareParameters(new SqlParameter("empnos", Types.INTEGER))
-			.declareParameters(new SqlOutParameter("sals", Types.FLOAT))
-			.withoutProcedureColumnMetaDataAccess();
+				.declareParameters(new SqlParameter("empnos", Types.INTEGER))
+				.declareParameters(new SqlOutParameter("sals", Types.FLOAT))
+				.withoutProcedureColumnMetaDataAccess();
 
-		sps = new MapSqlParameterSource().addValue("enames",
-				"SMITH").addValue("empnos", 7369);
+		sps = new MapSqlParameterSource().addValue("enames", "SMITH").addValue(
+				"empnos", 7369);
 		log.info(sjc.execute(sps));
-	
+
 	}
 
 }

@@ -50,7 +50,7 @@ public class MainTestForUpdatableSqlQuery {
 
 }
 
-class OwnersUpdateQuery extends UpdatableSqlQuery {
+class OwnersUpdateQuery extends UpdatableSqlQuery<String> {
 
 	public OwnersUpdateQuery(DataSource ds) {
 		super(ds, "select ename from emp where empno = ?");
@@ -58,7 +58,7 @@ class OwnersUpdateQuery extends UpdatableSqlQuery {
 		compile();
 	}
 
-	protected Object updateRow(ResultSet rs, int rownum, Map context) 
+	protected String updateRow(ResultSet rs, int rownum, Map context) 
 		throws SQLException {
 		rs.updateString(1, "" + rs.getString("ename") + " " + context.get(4));
 		return rs.getString("ename");

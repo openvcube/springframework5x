@@ -38,13 +38,13 @@ public class MainTestForMappingSqlQuery {
 		
 		DataSource ds = (DataSource)cbf.getBean("dataSource");
 	
-		MappingSqlQuery msq = new VisitsQuery(ds);
+		MappingSqlQuery<Visit> msq = new VisitsQuery(ds);
 		
-		List visits = msq.execute(7);
-		Iterator vi = visits.iterator();
+		List<Visit> visits = msq.execute(7);
+		Iterator<Visit> vi = visits.iterator();
 
 		while (vi.hasNext()) {
-			Visit visit = (Visit) vi.next();
+			Visit visit = vi.next();
 			log.info(visit.getDescription());
 		}
 		
@@ -52,14 +52,14 @@ public class MainTestForMappingSqlQuery {
 	
 }
 
-class VisitsQuery extends MappingSqlQuery {
+class VisitsQuery extends MappingSqlQuery<Visit> {
 	protected VisitsQuery(DataSource ds) {
 		super(ds, "SELECT id,visit_date,description FROM visits WHERE pet_id=?");
 		declareParameter(new SqlParameter(Types.INTEGER));
 		compile();
 	}
 
-	protected Object mapRow(ResultSet rs, int rownum) throws SQLException {
+	protected Visit mapRow(ResultSet rs, int rownum) throws SQLException {
 		Visit visit = new Visit();
 		visit.setId(new Integer(rs.getInt("id")));
 		visit.setDate(rs.getDate("visit_date"));
