@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+	<display-name>Spring JPetStore</display-name>
+
+	<description>Spring JPetStore sample application</description>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/dataAccessContext-local.xml /WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!--
+		- Spring web MVC servlet that dispatches requests to registered handlers.
+		- Has its own application context, by default defined in "{servlet-name}-servlet.xml",
+		- i.e. "petstore-servlet.xml" in this case.
+		-
+		- A web app can contain any number of such servlets.
+		- Note that this web app has a shared root application context, serving as parent
+		- of all DispatcherServlet contexts.
+	-->
+	<servlet>
+		<servlet-name>petstore</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<!--
+		- Dispatcher servlet definition for HTTP remoting via Hessian, Burlap, and
+		- Spring's HTTP invoker (see remoting-servlet.xml for the controllers).
+	-->
+	<servlet>
+		<servlet-name>remoting</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>4</load-on-startup>
+	</servlet>
+
+	<!--
+		- Servlet definition for Web Service remoting via Apache Axis
+		- (see server-config.wsdd for Axis configuration).
+	-->
+	<servlet>
+		<servlet-name>axis</servlet-name>
+		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+		<load-on-startup>5</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>petstore</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+
+	<!--
+		- Dispatcher servlet mapping for HTTP remoting via Hessian, Burlap, and
+		- Spring's HTTP invoker (see remoting-servlet.xml for the controllers).
+	-->
+	<servlet-mapping>
+		<servlet-name>remoting</servlet-name>
+		<url-pattern>/remoting/*</url-pattern>
+	</servlet-mapping>
+
+	<!--
+		- Servlet mapping for Web Service remoting via Apache Axis
+		- (see server-config.wsdd for Axis configuration).
+	-->
+	<servlet-mapping>
+		<servlet-name>axis</servlet-name>
+		<url-pattern>/axis/*</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

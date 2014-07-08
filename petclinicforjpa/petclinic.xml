@@ -1,5 +1,0 @@
-<Context docBase="D:\eclipse\workspace\petclinicforjpa\context"
-         path="/petclinic">	
-	<Loader loaderClass="org.springframework.instrument.classloading.tomcat.TomcatInstrumentableClassLoader" 
-		useSystemClassLoaderAsParent="false" />
-</Context>
