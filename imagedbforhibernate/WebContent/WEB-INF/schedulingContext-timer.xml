@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:p="http://www.springframework.org/schema/p"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- java.util.Timer, with pre-registered scheduled tasks -->
+	<!-- Will automatically start scheduling on context startup -->
+	<bean id="timer" class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref bean="listImagesScheduledTask"/>
+				<ref bean="checkImagesScheduledTask"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Task definition for ListImagesTimerTask -->
+	<!-- Lists the images in the image database and sends a corresponding mail -->
+	<bean id="listImagesTimerTask" class="org.springframework.samples.imagedb.scheduling.ListImagesTimerTask">
+		<property name="imageDatabase" ref="imageDatabase"/>
+		<property name="mailSender" ref="mailSender"/>
+		<property name="mailFrom" value="${mail.from}"/>
+		<property name="mailTo" value="${mail.to}"/>
+	</bean>
+
+	<!-- ScheduledTimerTask for the task defined above -->
+	<!-- Registered by the 'timer' bean -->
+	<bean id="listImagesScheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="timerTask" ref="listImagesTimerTask"/>
+		<property name="delay" value="10000"/>
+		<property name="period" value="10000"/>
+	</bean>
+
+	<!-- Job definition that delegates to the specified 'imageDatabase' method -->
+	<!-- Convenient way of invoking existing business logic instead of writing a task -->
+	<bean id="checkImagesTimerTask" class="org.springframework.scheduling.timer.MethodInvokingTimerTaskFactoryBean">
+		<property name="targetObject" ref="imageDatabase"/>
+		<property name="targetMethod" value="checkImages"/>
+	</bean>
+
+	<!-- ScheduledTimerTask for the task defined above -->
+	<!-- Registered by the 'timer' bean -->
+	<bean id="checkImagesScheduledTask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="timerTask" ref="checkImagesTimerTask"/>
+		<property name="delay" value="5000"/>
+		<property name="period" value="5000"/>
+	</bean>
+
+</beans>

@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/activation.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-collections.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-fileupload.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-io.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-logging.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/freemarker.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/mail.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/spring.jar" sourcepath="/spring"/>
-	<classpathentry kind="lib" path="lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/cglib-nodep-2.1_3.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/hibernate3.jar" sourcepath="/hibernate"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/jta.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/log4j-1.2.15.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/commons-lang.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/ehcache-1.4.1.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/spring-webmvc.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/velocity-1.5.jar"/>
-	<classpathentry kind="lib" path="lib/commonj-twm.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/quartz-all-1.6.1-RC1.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/slf4j-api-1.5.0.jar"/>
-	<classpathentry kind="lib" path="context/WEB-INF/lib/slf4j-log4j12-1.5.0.jar"/>
-	<classpathentry kind="output" path="context/WEB-INF/classes"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_05">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.web"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="/springframework4.0-libs/commonj-twm.jar"/>
+	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

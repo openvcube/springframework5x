@@ -9,17 +9,24 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.dao.DataAccessException;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.util.FileCopyUtils;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class DefaultImageDatabase extends HibernateDaoSupport implements ImageDatabase {
 
-	protected static final Log log = LogFactory.getLog(DefaultImageDatabase.class);
+	private static final Log log = LogFactory.getLog(DefaultImageDatabase.class);
 	
 	public List getImages() throws DataAccessException {
 		List<ImageDescriptor> returnList = new ArrayList<ImageDescriptor>();
@@ -55,6 +62,7 @@ public class DefaultImageDatabase extends HibernateDaoSupport implements ImageDa
 
 		try{
 			imagedb.setContent(FileCopyUtils.copyToByteArray(contentStream));
+			
 		} catch(IOException io){
 			log.error("", io);
 		}

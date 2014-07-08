@@ -1,5 +1,5 @@
 package org.springframework.samples.imagedb;
-// Generated 2008-5-9 12:32:18 by Hibernate Tools 3.2.1.GA
+// Generated 2014-7-8 21:31:01 by Hibernate Tools 4.3.1
 
 
 

@@ -2,14 +2,10 @@
 
 	<property name="src.dir" value="src"/>
 	<property name="hibernatetools.dir" value="hibernatetools"/>
-	<property name="lib.dir" value="lib"/>
-	<property name="weblib.dir" value="context/WEB-INF/lib"/>
+	<property name="weblib.dir" value="WebContent/WEB-INF/lib"/>
 
 	<path id="all-libs">
 		<fileset dir="${weblib.dir}">
-			<include name="*.jar"/>
-		</fileset>
-		<fileset dir="${lib.dir}">
 			<include name="*.jar"/>
 		</fileset>
 		<fileset dir="${hibernatetools.dir}">

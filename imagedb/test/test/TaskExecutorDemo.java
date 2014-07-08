@@ -2,7 +2,6 @@ package test;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.generic.GenericBeanFactoryAccessor;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.task.SyncTaskExecutor;
@@ -10,8 +9,15 @@ import org.springframework.core.task.TaskExecutor;
 
 /**
  * 
- * @author worldheart
- * 
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class TaskExecutorDemo {
 
@@ -22,27 +28,25 @@ public class TaskExecutorDemo {
 		
 		aac.registerShutdownHook();
 		
-		GenericBeanFactoryAccessor gbfa = new GenericBeanFactoryAccessor(aac);
-				
-//		TaskExecutor te = gbfa.getBean("syncTaskExecutor");		
+//		TaskExecutor te = (TaskExecutor)aac.getBean("syncTaskExecutor");		
 		TaskExecutor te = new SyncTaskExecutor();
 		te.execute(new LogRunner());
 
-		te = gbfa.getBean("simpleAsyncTaskExecutor");
+		te = (TaskExecutor)aac.getBean("simpleAsyncTaskExecutor");
 		te.execute(new LogRunner());
 
-		te = gbfa.getBean("threadPoolTaskExecutor");
+		te = (TaskExecutor)aac.getBean("threadPoolTaskExecutor");
 		te.execute(new LogRunner());		
 		
-		te = gbfa.getBean("concurrentTaskExecutor");
+		te = (TaskExecutor)aac.getBean("concurrentTaskExecutor");
 		te.execute(new LogRunner());
 		
-		te = gbfa.getBean("simpleThreadPoolTaskExecutor");
+		te = (TaskExecutor)aac.getBean("simpleThreadPoolTaskExecutor");
 		te.execute(new LogRunner());						
 		
-		te = gbfa.getBean("timerTaskExecutor");
+		te = (TaskExecutor)aac.getBean("timerTaskExecutor");
 		te.execute(new LogRunner());
-				
+		
 		Thread.sleep(2000);
 		System.exit(0);
 		

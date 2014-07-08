@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	     xmlns:p="http://www.springframework.org/schema/p"
+	     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	     	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="timerManager" class="org.springframework.scheduling.commonj.TimerManagerFactoryBean">
+		<property name="timerManagerName" value="jndi/timerManagerName" />
+		<property name="scheduledTimerListeners">
+			<list>
+				<ref bean="listImagesScheduledTask"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="listImagesTimerTask" 
+		class="org.springframework.samples.imagedb.scheduling.ListImagesTimerListener">
+		<property name="imageDatabase" ref="imageDatabase"/>
+		<property name="mailSender" ref="mailSender"/>
+		<property name="mailFrom" value="${mail.from}"/>
+		<property name="mailTo" value="${mail.to}"/>
+	</bean>
+
+	<bean id="listImagesScheduledTask" 
+		class="org.springframework.scheduling.commonj.ScheduledTimerListener">
+		<property name="timerListener" ref="listImagesTimerTask"/>
+		<property name="delay" value="10000"/>
+		<property name="period" value="10000"/>
+	</bean>
+
+</beans>
