@@ -18,10 +18,20 @@ import org.springframework.samples.Visits;
 
 /**
  * 
- * @author worldheart
- * 
+ * <pre>
+ * ç¨‹åºçš„ä¸­æ–‡åç§°ã€‚
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * ä¿®æ”¹è®°å½•
+ *    ä¿®æ”¹åç‰ˆæœ¬:     ä¿®æ”¹äººï¼š  ä¿®æ”¹æ—¥æœŸ:     ä¿®æ”¹å†…å®¹: 
+ * </pre>
  */
 public class MainTestForHibernateDemo {
+
+	private static final Log log = LogFactory
+			.getLog(MainTestForHibernateDemo.class);
 
 	private SessionFactory sf;
 
@@ -29,21 +39,18 @@ public class MainTestForHibernateDemo {
 		this.sf = sf;
 	}
 
-	protected static final Log log = LogFactory
-			.getLog(MainTestForHibernateDemo.class);
-
 	public static void main(String[] args) {
 
-		//Ìá¹©.hbm/.classĞÅÏ¢
+		//æä¾›.hbm/.classä¿¡æ¯
 		Configuration cfg = new Configuration().addClass(Owners.class)
 				.addClass(Pets.class).addClass(Types.class)
 				.addClass(Vets.class).addClass(Specialties.class)
 				.addClass(Visits.class);
 
 		MainTestForHibernateDemo mthd = new MainTestForHibernateDemo();
-		//Ê¹ÓÃclasspath¸ùÂ·¾¶µÄhibernate.cfg.xml¡£Èç¹û²»µ÷ÓÃËü£¬ÔòÄ¬ÈÏ»áÊ¹ÓÃhibernate.properties
+		//ä½¿ç”¨classpathæ ¹è·¯å¾„çš„hibernate.cfg.xmlã€‚å¦‚æœä¸è°ƒç”¨å®ƒï¼Œåˆ™é»˜è®¤ä¼šä½¿ç”¨hibernate.properties
 		cfg.configure();
-		//¹¹½¨Ïß³Ì°²È«µÄSessionFactory
+		//æ„å»ºçº¿ç¨‹å®‰å…¨çš„SessionFactory
 		mthd.setSf(cfg.buildSessionFactory());
 
 		mthd.testVisitsVersionHQL();
@@ -55,15 +62,15 @@ public class MainTestForHibernateDemo {
 	}
 
 	public void testVisitsVersionHQL() {
-		//»ñµÃÏß³Ì²»°²È«µÄHibernate Session
+		//è·å¾—çº¿ç¨‹ä¸å®‰å…¨çš„Hibernate Session
 		Session session = this.sf.openSession();
 		Transaction tran = null;
 		try {
-			//ÊÖ¹¤¹ÜÀíÊÂÎñ
+			//æ‰‹å·¥ç®¡ç†äº‹åŠ¡
 			tran = session.beginTransaction();
-			//½èÖúÓÚHQL²éÑ¯Êı¾İ
+			//å€ŸåŠ©äºHQLæŸ¥è¯¢æ•°æ®
 			List list = session.createQuery("from Visits vi").setFirstResult(1).setMaxResults(3).list();
-			//Ö±½Ó·ÖÎöÓÉVisits¹¹³ÉµÄ¼¯ºÏ
+			//ç›´æ¥åˆ†æç”±Visitsæ„æˆçš„é›†åˆ
 			for (Object visits : list) {
 				Visits visit = (Visits) visits;
 				log.info("id:" + visit.getId() + ",visitDate:" + visit.getVisitDate() +
@@ -80,15 +87,15 @@ public class MainTestForHibernateDemo {
 	}
 	
 	public void testVisitsVersionCriteriaAPI() {
-		//»ñµÃÏß³Ì²»°²È«µÄHibernate Session
+		//è·å¾—çº¿ç¨‹ä¸å®‰å…¨çš„Hibernate Session
 		Session session = this.sf.openSession();
 		Transaction tran = null;
 		try {
-			//ÊÖ¹¤¹ÜÀíÊÂÎñ
+			//æ‰‹å·¥ç®¡ç†äº‹åŠ¡
 			tran = session.beginTransaction();
-			//½èÖúÓÚCriteria API²éÑ¯Êı¾İ
+			//å€ŸåŠ©äºCriteria APIæŸ¥è¯¢æ•°æ®
 			List list = session.createCriteria(Visits.class).setFirstResult(1).setMaxResults(3).addOrder(Order.asc("visitDate")).list();
-			//Ö±½Ó·ÖÎöÓÉVisits¹¹³ÉµÄ¼¯ºÏ
+			//ç›´æ¥åˆ†æç”±Visitsæ„æˆçš„é›†åˆ
 			for (Object visits : list) {
 				Visits visit = (Visits) visits;
 				log.info("id:" + visit.getId() + ",visitDate:" + visit.getVisitDate() +
@@ -105,22 +112,22 @@ public class MainTestForHibernateDemo {
 	}
 	
 	public void testVisitsVersionNativeSQL() {
-		//»ñµÃÏß³Ì²»°²È«µÄHibernate Session
+		//è·å¾—çº¿ç¨‹ä¸å®‰å…¨çš„Hibernate Session
 		Session session = this.sf.openSession();
 		Transaction tran = null;
 		try {
-			//ÊÖ¹¤¹ÜÀíÊÂÎñ
+			//æ‰‹å·¥ç®¡ç†äº‹åŠ¡
 			tran = session.beginTransaction();
-			//½èÖúÓÚÔ­ÉúSQLÓï¾ä²éÑ¯Êı¾İ
+			//å€ŸåŠ©äºåŸç”ŸSQLè¯­å¥æŸ¥è¯¢æ•°æ®
 			List list = session.createSQLQuery("select id,visit_date from Visits").setFirstResult(1).setMaxResults(3).list();
-			//Ö±½Ó·ÖÎöÓÉÊı×é¹¹³ÉµÄ¼¯ºÏ
+			//ç›´æ¥åˆ†æç”±æ•°ç»„æ„æˆçš„é›†åˆ
 			for (Object visits : list){
 				Object[] vi = (Object[])visits;
 				log.info("id:"+vi[0] + ",visit_date:" + vi[1]);
 			}				
-			//Íê³É²éÑ¯½á¹ûµ½HibernateÊµÌåµÄÓ³Éä
+			//å®ŒæˆæŸ¥è¯¢ç»“æœåˆ°Hibernateå®ä½“çš„æ˜ å°„
 			list = session.createSQLQuery("select * from Visits").addEntity(Visits.class).setFirstResult(1).setMaxResults(3).list();
-			//	Ö±½Ó·ÖÎöÓÉVisits¹¹³ÉµÄ¼¯ºÏ
+			//	ç›´æ¥åˆ†æç”±Visitsæ„æˆçš„é›†åˆ
 			for (Object visits : list){
 				Visits visit = (Visits) visits;
 				log.info("id:" + visit.getId() + ",visitDate:" + visit.getVisitDate());
