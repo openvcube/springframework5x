@@ -1,5 +1,5 @@
 package org.springframework.samples;
-// Generated 2008-5-8 14:10:19 by Hibernate Tools 3.2.1.GA
+// Generated 2014-7-9 0:10:44 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
 public class Visits  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Pets pets;
      private Date visitDate;
      private String description;
@@ -19,22 +19,20 @@ public class Visits  implements java.io.Serializable {
     }
 
 	
-    public Visits(int id, Pets pets) {
-        this.id = id;
+    public Visits(Pets pets) {
         this.pets = pets;
     }
-    public Visits(int id, Pets pets, Date visitDate, String description) {
-       this.id = id;
+    public Visits(Pets pets, Date visitDate, String description) {
        this.pets = pets;
        this.visitDate = visitDate;
        this.description = description;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Pets getPets() {

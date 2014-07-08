@@ -25,60 +25,17 @@
 		<h4>
 				org.springframework.samples
 		</h4>
-		<h2>Entity Vets</h2>
+		<h2>Entity VetSpecialtiesId</h2>
 		
 		<ul class="EntityHierarchy">
 			<li>
-				org.springframework.samples.Vets
+				org.springframework.samples.VetSpecialtiesId
 			</li>
 		</ul>
 
 		<hr/>
 
 		
-			
-			<table id="identifier_summary">
-				<thead>
-					<tr>
-						<th class="MainTableHeading" colspan="4">
-							Identifier Summary
-						</th>
-					</tr>
-					<tr>
-						<th style="width: 14%">
-							Name
-						</th>
-						<th style="width: 14%">
-							Column
-						</th>
-						<th style="width: 14%">
-							Type
-						</th>
-						<th style="width: 58%">
-							Description
-						</th>
-					</tr>
-				</thead>
-
-				<tbody>
-						<tr>
-							<td>
-								<a href="#identifier_detail_id">
-									id
-								</a>
-							</td>
-							<td>
-								Column
-							</td>
-							<td>
-								Integer
-							</td>
-							<td>
-									&nbsp;
-							</td>			
-						</tr>
-				</tbody>
-			</table>
 		
 
 			<table id="property_summary">
@@ -110,14 +67,14 @@
 	
 						<tr>
 							<td rowspan="1">
-								<a href="#property_detail_firstName">
-									firstName
+								<a href="#property_detail_specialtyId">
+									specialtyId
 								</a>
 							</td>
 	
 									<td>
 										<a href="#property_summary">
-											FIRST_NAME
+											SPECIALTY_ID
 										</a>
 									</td>
 	
@@ -126,7 +83,7 @@
 							</td>
 	
 							<td rowspan="1">
-									String
+									int
 							</td>
 	
 							<td rowspan="1">
@@ -135,14 +92,14 @@
 						</tr>
 						<tr>
 							<td rowspan="1">
-								<a href="#property_detail_lastName">
-									lastName
+								<a href="#property_detail_vetId">
+									vetId
 								</a>
 							</td>
 	
 									<td>
 										<a href="#property_summary">
-											LAST_NAME
+											VET_ID
 										</a>
 									</td>
 	
@@ -151,33 +108,10 @@
 							</td>
 	
 							<td rowspan="1">
-									String
+									int
 							</td>
 	
 							<td rowspan="1">
-									&nbsp;
-							</td>
-						</tr>
-						<tr>
-							<td >
-								<a href="#property_detail_vetSpecialtieses">
-									vetSpecialtieses
-								</a>
-							</td>
-	
-								<td>
-									&nbsp;
-								</td>
-	
-							<td >
-								property (<a href="#property_summary">get</a> / <a href="#property_summary">set</a>)
-							</td>
-	
-							<td >
-									Set&lt;VetSpecialties&gt;
-							</td>
-	
-							<td >
 									&nbsp;
 							</td>
 						</tr>
@@ -186,20 +120,14 @@
 			</table>
 
 
-			<p id="identifier_detail" class="MainTableHeading">
-				Identifier Detail
-			</p>
-				<h3 id="identifier_detail_id">id</h3>
 
 
 			<p id="property_detail" class="MainTableHeading">
 				Property Detail
 			</p>
-				<h3 id="property_detail_firstName">firstName</h3>
+				<h3 id="property_detail_vetId">vetId</h3>
 				<hr/>
-				<h3 id="property_detail_lastName">lastName</h3>
-				<hr/>
-				<h3 id="property_detail_vetSpecialtieses">vetSpecialtieses</h3>
+				<h3 id="property_detail_specialtyId">specialtyId</h3>
 				<hr/>
 
 	</body>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-7-9 0:10:43 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="org.springframework.samples.VetSpecialties" table="VET_SPECIALTIES" optimistic-lock="version">
+        <composite-id name="id" class="org.springframework.samples.VetSpecialtiesId">
+            <key-property name="vetId" type="int">
+                <column name="VET_ID" />
+            </key-property>
+            <key-property name="specialtyId" type="int">
+                <column name="SPECIALTY_ID" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="specialties" class="org.springframework.samples.Specialties" update="false" insert="false" fetch="select">
+            <column name="SPECIALTY_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vets" class="org.springframework.samples.Vets" update="false" insert="false" fetch="select">
+            <column name="VET_ID" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

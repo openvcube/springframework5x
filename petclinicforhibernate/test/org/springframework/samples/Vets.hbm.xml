@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2008-5-8 14:10:15 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 2014-7-9 0:10:43 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="org.springframework.samples.Vets" table="VETS">
-        <id name="id" type="int">
+    <class name="org.springframework.samples.Vets" table="VETS" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="firstName" type="string">
             <column name="FIRST_NAME" length="30" />
@@ -14,13 +14,11 @@
         <property name="lastName" type="string">
             <column name="LAST_NAME" length="30" />
         </property>
-        <set name="specialtieses" inverse="false" table="VET_SPECIALTIES">
+        <set name="vetSpecialtieses" table="VET_SPECIALTIES" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="VET_ID" not-null="true" />
             </key>
-            <many-to-many entity-name="org.springframework.samples.Specialties">
-                <column name="SPECIALTY_ID" not-null="true" />
-            </many-to-many>
+            <one-to-many class="org.springframework.samples.VetSpecialties" />
         </set>
     </class>
 </hibernate-mapping>

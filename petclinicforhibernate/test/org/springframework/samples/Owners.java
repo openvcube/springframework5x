@@ -1,5 +1,5 @@
 package org.springframework.samples;
-// Generated 2008-5-8 14:10:19 by Hibernate Tools 3.2.1.GA
+// Generated 2014-7-9 0:10:44 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,7 +11,7 @@ import java.util.Set;
 public class Owners  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String firstName;
      private String lastName;
      private String address;
@@ -22,12 +22,7 @@ public class Owners  implements java.io.Serializable {
     public Owners() {
     }
 
-	
-    public Owners(int id) {
-        this.id = id;
-    }
-    public Owners(int id, String firstName, String lastName, String address, String city, String telephone, Set petses) {
-       this.id = id;
+    public Owners(String firstName, String lastName, String address, String city, String telephone, Set petses) {
        this.firstName = firstName;
        this.lastName = lastName;
        this.address = address;
@@ -36,11 +31,11 @@ public class Owners  implements java.io.Serializable {
        this.petses = petses;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getFirstName() {

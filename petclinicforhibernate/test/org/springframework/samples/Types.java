@@ -1,5 +1,5 @@
 package org.springframework.samples;
-// Generated 2008-5-8 14:10:19 by Hibernate Tools 3.2.1.GA
+// Generated 2014-7-9 0:10:44 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,28 +11,23 @@ import java.util.Set;
 public class Types  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String name;
      private Set petses = new HashSet(0);
 
     public Types() {
     }
 
-	
-    public Types(int id) {
-        this.id = id;
-    }
-    public Types(int id, String name, Set petses) {
-       this.id = id;
+    public Types(String name, Set petses) {
        this.name = name;
        this.petses = petses;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getName() {

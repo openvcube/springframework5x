@@ -25,11 +25,11 @@
 		<h4>
 				org.springframework.samples
 		</h4>
-		<h2>Entity Vets</h2>
+		<h2>Entity VetSpecialties</h2>
 		
 		<ul class="EntityHierarchy">
 			<li>
-				org.springframework.samples.Vets
+				org.springframework.samples.VetSpecialties
 			</li>
 		</ul>
 
@@ -61,22 +61,50 @@
 				</thead>
 
 				<tbody>
-						<tr>
-							<td>
-								<a href="#identifier_detail_id">
-									id
-								</a>
-							</td>
-							<td>
-								Column
-							</td>
-							<td>
-								Integer
-							</td>
-							<td>
-									&nbsp;
-							</td>			
-						</tr>
+							<tr>
+								<td rowspan="1">
+									<a href="#identifier_detail_vetId">
+										vetId
+									</a>
+								</td>
+
+										<td>
+											<a href="#property_summary">
+												VET_ID
+											</a>
+										</td>
+								
+								<td rowspan="1">
+										int
+								</td>
+
+								<td rowspan="1">
+										
+								</td>
+							</tr>
+							
+							<tr>
+								<td rowspan="1">
+									<a href="#identifier_detail_specialtyId">
+										specialtyId
+									</a>
+								</td>
+
+										<td>
+											<a href="#property_summary">
+												SPECIALTY_ID
+											</a>
+										</td>
+								
+								<td rowspan="1">
+										int
+								</td>
+
+								<td rowspan="1">
+										
+								</td>
+							</tr>
+							
 				</tbody>
 			</table>
 		
@@ -110,14 +138,14 @@
 	
 						<tr>
 							<td rowspan="1">
-								<a href="#property_detail_firstName">
-									firstName
+								<a href="#property_detail_specialties">
+									specialties
 								</a>
 							</td>
 	
 									<td>
 										<a href="#property_summary">
-											FIRST_NAME
+											SPECIALTY_ID
 										</a>
 									</td>
 	
@@ -126,7 +154,7 @@
 							</td>
 	
 							<td rowspan="1">
-									String
+									Specialties
 							</td>
 	
 							<td rowspan="1">
@@ -135,14 +163,14 @@
 						</tr>
 						<tr>
 							<td rowspan="1">
-								<a href="#property_detail_lastName">
-									lastName
+								<a href="#property_detail_vets">
+									vets
 								</a>
 							</td>
 	
 									<td>
 										<a href="#property_summary">
-											LAST_NAME
+											VET_ID
 										</a>
 									</td>
 	
@@ -151,33 +179,10 @@
 							</td>
 	
 							<td rowspan="1">
-									String
+									Vets
 							</td>
 	
 							<td rowspan="1">
-									&nbsp;
-							</td>
-						</tr>
-						<tr>
-							<td >
-								<a href="#property_detail_vetSpecialtieses">
-									vetSpecialtieses
-								</a>
-							</td>
-	
-								<td>
-									&nbsp;
-								</td>
-	
-							<td >
-								property (<a href="#property_summary">get</a> / <a href="#property_summary">set</a>)
-							</td>
-	
-							<td >
-									Set&lt;VetSpecialties&gt;
-							</td>
-	
-							<td >
 									&nbsp;
 							</td>
 						</tr>
@@ -189,17 +194,16 @@
 			<p id="identifier_detail" class="MainTableHeading">
 				Identifier Detail
 			</p>
-				<h3 id="identifier_detail_id">id</h3>
+					<h3 id="identifier_detail_vetId">vetId</h3>
+					<h3 id="identifier_detail_specialtyId">specialtyId</h3>
 
 
 			<p id="property_detail" class="MainTableHeading">
 				Property Detail
 			</p>
-				<h3 id="property_detail_firstName">firstName</h3>
+				<h3 id="property_detail_specialties">specialties</h3>
 				<hr/>
-				<h3 id="property_detail_lastName">lastName</h3>
-				<hr/>
-				<h3 id="property_detail_vetSpecialtieses">vetSpecialtieses</h3>
+				<h3 id="property_detail_vets">vets</h3>
 				<hr/>
 
 	</body>

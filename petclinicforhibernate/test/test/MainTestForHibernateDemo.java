@@ -13,6 +13,7 @@ import org.springframework.samples.Owners;
 import org.springframework.samples.Pets;
 import org.springframework.samples.Specialties;
 import org.springframework.samples.Types;
+import org.springframework.samples.VetSpecialties;
 import org.springframework.samples.Vets;
 import org.springframework.samples.Visits;
 
@@ -45,7 +46,7 @@ public class MainTestForHibernateDemo {
 		Configuration cfg = new Configuration().addClass(Owners.class)
 				.addClass(Pets.class).addClass(Types.class)
 				.addClass(Vets.class).addClass(Specialties.class)
-				.addClass(Visits.class);
+				.addClass(Visits.class).addClass(VetSpecialties.class);
 
 		MainTestForHibernateDemo mthd = new MainTestForHibernateDemo();
 		//使用classpath根路径的hibernate.cfg.xml。如果不调用它，则默认会使用hibernate.properties

@@ -1,6 +1,5 @@
 package test;
 
-import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,19 +9,26 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Property;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.orm.hibernate4.HibernateCallback;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.samples.Owners;
 import org.springframework.samples.Visits;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class HibernateTemplateOper extends HibernateDaoSupport implements IOper {
 
-	protected static final Log log = LogFactory.getLog(HibernateTemplateOper.class);
+	private static final Log log = LogFactory.getLog(HibernateTemplateOper.class);
 	
 	/* (non-Javadoc)
 	 * @see test.IOper#testOper()
@@ -62,28 +68,20 @@ public class HibernateTemplateOper extends HibernateDaoSupport implements IOper 
 			log.info("id:" + vis.getId() + ",visitDate:" + vis.getVisitDate() + ",description:" + 
 					vis.getDescription() + ",pets:" + vis.getPets());
 		}
-		//�رյ�����
+		//关闭迭代器
 		this.getHibernateTemplate().closeIterator(iterator);
 		
 		int updatedRows = this.getHibernateTemplate()
 			.bulkUpdate("update Owners set telephone = '10000000' where lastName = ?", "Davis" );
 		log.info(updatedRows);
 				
-		Owners own = (Owners)this.getHibernateTemplate().execute(new HibernateCallback(){
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				return session.load(Owners.class, 1);
+		Owners own = (Owners)this.getHibernateTemplate().execute(new HibernateCallback<Owners>(){
+			public Owners doInHibernate(Session session) throws HibernateException {
+				return (Owners)session.load(Owners.class, 1);
 			}
 		});
 		
 		log.info(own);
-		
-		List list = this.getHibernateTemplate().executeFind(new HibernateCallback(){
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				return session.createQuery("from Owners").list();
-			}
-		});
-		
-		log.info(list);
 	}
 	
 }

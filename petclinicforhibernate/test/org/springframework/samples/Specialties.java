@@ -1,5 +1,5 @@
 package org.springframework.samples;
-// Generated 2008-5-8 14:10:19 by Hibernate Tools 3.2.1.GA
+// Generated 2014-7-9 0:10:44 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -11,28 +11,23 @@ import java.util.Set;
 public class Specialties  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String name;
-     private Set vetses = new HashSet(0);
+     private Set vetSpecialtieses = new HashSet(0);
 
     public Specialties() {
     }
 
-	
-    public Specialties(int id) {
-        this.id = id;
-    }
-    public Specialties(int id, String name, Set vetses) {
-       this.id = id;
+    public Specialties(String name, Set vetSpecialtieses) {
        this.name = name;
-       this.vetses = vetses;
+       this.vetSpecialtieses = vetSpecialtieses;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getName() {
@@ -42,12 +37,12 @@ public class Specialties  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-    public Set getVetses() {
-        return this.vetses;
+    public Set getVetSpecialtieses() {
+        return this.vetSpecialtieses;
     }
     
-    public void setVetses(Set vetses) {
-        this.vetses = vetses;
+    public void setVetSpecialtieses(Set vetSpecialtieses) {
+        this.vetSpecialtieses = vetSpecialtieses;
     }
 
 

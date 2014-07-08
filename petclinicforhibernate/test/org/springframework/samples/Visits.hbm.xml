@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 2008-5-8 14:10:15 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 2014-7-9 0:10:43 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="org.springframework.samples.Visits" table="VISITS">
-        <id name="id" type="int">
+    <class name="org.springframework.samples.Visits" table="VISITS" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
             <column name="ID" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="pets" class="org.springframework.samples.Pets" fetch="select">
             <column name="PET_ID" not-null="true" />

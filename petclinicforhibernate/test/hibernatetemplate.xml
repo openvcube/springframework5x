@@ -25,7 +25,7 @@
 	</bean>
 
 	<bean id="sessionFactory" 
-		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mappingResources">
 			<list>
@@ -35,6 +35,7 @@
 				<value>org/springframework/samples/Types.hbm.xml</value>
 				<value>org/springframework/samples/Vets.hbm.xml</value>
 				<value>org/springframework/samples/Visits.hbm.xml</value>
+				<value>org/springframework/samples/VetSpecialties.hbm.xml</value>
 				<value>test/Queries.hbm.xml</value>
 			</list>
 		</property>
@@ -45,13 +46,6 @@
 				<prop key="hibernate.use_sql_comments">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
-		</property>
-		<property name="eventListeners">
-			<map>
-				<entry key="merge">
-					<bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener"/>
-				</entry>
-			</map>
 		</property>
 	</bean>
 
@@ -66,11 +60,11 @@
 	</tx:advice>
 
 	<bean id="hibernateTemplate" 
-		class="org.springframework.orm.hibernate3.HibernateTemplate"
+		class="org.springframework.orm.hibernate4.HibernateTemplate"
 		p:sessionFactory-ref="sessionFactory"/>
 
 	<bean id="transactionManager" 
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
 		p:sessionFactory-ref="sessionFactory"/>
 
 	<bean id="hibernateTemplateOper" class="test.HibernateTemplateOper"

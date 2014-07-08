@@ -1,5 +1,5 @@
 package org.springframework.samples;
-// Generated 2008-5-8 14:10:19 by Hibernate Tools 3.2.1.GA
+// Generated 2014-7-9 0:10:44 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,9 +12,9 @@ import java.util.Set;
 public class Pets  implements java.io.Serializable {
 
 
-     private int id;
-     private Types types;
+     private Integer id;
      private Owners owners;
+     private Types types;
      private String name;
      private Date birthDate;
      private Set visitses = new HashSet(0);
@@ -23,33 +23,24 @@ public class Pets  implements java.io.Serializable {
     }
 
 	
-    public Pets(int id, Types types, Owners owners) {
-        this.id = id;
-        this.types = types;
+    public Pets(Owners owners, Types types) {
         this.owners = owners;
+        this.types = types;
     }
-    public Pets(int id, Types types, Owners owners, String name, Date birthDate, Set visitses) {
-       this.id = id;
-       this.types = types;
+    public Pets(Owners owners, Types types, String name, Date birthDate, Set visitses) {
        this.owners = owners;
+       this.types = types;
        this.name = name;
        this.birthDate = birthDate;
        this.visitses = visitses;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-    public Types getTypes() {
-        return this.types;
-    }
-    
-    public void setTypes(Types types) {
-        this.types = types;
     }
     public Owners getOwners() {
         return this.owners;
@@ -57,6 +48,13 @@ public class Pets  implements java.io.Serializable {
     
     public void setOwners(Owners owners) {
         this.owners = owners;
+    }
+    public Types getTypes() {
+        return this.types;
+    }
+    
+    public void setTypes(Types types) {
+        this.types = types;
     }
     public String getName() {
         return this.name;
