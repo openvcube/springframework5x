@@ -5,9 +5,9 @@
 
 	<type-mapping>
 		<sql-type jdbc-type="BLOB" 
-			hibernate-type="org.springframework.orm.hibernate3.support.BlobByteArrayType"/>
+			hibernate-type="byte[]"/>
 		<sql-type jdbc-type="CLOB" 
-			hibernate-type="org.springframework.orm.hibernate3.support.ClobStringType"/>
+			hibernate-type="string"/>
 	</type-mapping>
  
 	<table-filter match-name="BIN$.*" exclude="true"/>	
