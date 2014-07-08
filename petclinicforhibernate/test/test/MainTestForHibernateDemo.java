@@ -131,7 +131,7 @@ public class MainTestForHibernateDemo {
 			for (Object visits : list){
 				Visits visit = (Visits) visits;
 				log.info("id:" + visit.getId() + ",visitDate:" + visit.getVisitDate());
-			}							
+			}			
 			tran.commit();
 		} catch (Exception exe) {
 			if (tran != null)
