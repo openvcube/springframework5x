@@ -1,5 +1,5 @@
 package org.springframework.samples.annotations;
-// Generated 2014-7-9 23:01:38 by Hibernate Tools 4.3.1
+// Generated 2014-7-9 23:05:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
