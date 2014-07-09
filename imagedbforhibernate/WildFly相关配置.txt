@@ -1,0 +1,38 @@
+为了将启用了JTA的imagedbforhibernate WAR应用部署到WildFly应用服务器中，开发者需要根据如下步骤进行。
+
+其一，假定WildFly安装在D:\wildfly-8.1.0.Final位置。新建D:\wildfly-8.1.0.Final\modules\com\oracle\main目录结构，并将Oracle JDBC驱动拷贝到main目录中，比如ojdbc7.jar。并在main目录中新建一module.xml配置文件，其内容如下。
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<module xmlns="urn:jboss:module:1.3" name="com.oracle">
+
+    <resources>
+        <resource-root path="ojdbc7.jar"/>
+    </resources>
+    <dependencies>
+        <module name="javax.api"/>
+        <module name="javax.transaction.api"/>
+    </dependencies>
+</module>
+
+其二，找到D:\wildfly-8.1.0.Final\standalone\configuration中的standalone.xml配置文件，在<subsystem xmlns="urn:jboss:domain:datasources:2.0">位置中添加如下两类信息。
+
+<driver name="oracle" module="com.oracle">
+	<xa-datasource-class>oracle.jdbc.xa.client.OracleXADataSource</xa-datasource-class>
+</driver>
+
+<xa-datasource jndi-name="java:jboss/datasources/XAOracleDS" pool-name="XAOracleDS" enabled="true" use-java-context="true">
+    <xa-datasource-property name="URL">jdbc:oracle:thin:@localhost:1521:ORCL</xa-datasource-property>
+    <driver>oracle</driver>
+    <security>
+	<user-name>scott</user-name>
+	<password>password</password>
+    </security>
+</xa-datasource>
+
+其三，将打包好的imagedbforhibernate.war压缩包拷贝到D:\wildfly-8.1.0.Final\standalone\deployments位置。
+
+其四，通过运行D:\wildfly-8.1.0.Final\bin中的standalone.bat，便能够正常启动WildFly。
+
+最后，打开浏览器，并定位到http://localhost:8080/imagedbforhibernate入口。位于D:\位置的imagedbforhibernate.log日志文件详细记录了相关细节信息。
+

@@ -38,26 +38,21 @@
 	-->
 
 	<!-- Hibernate SessionFactory -->
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean"
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"
 			p:dataSource-ref="dataSource" p:mappingResources="petclinic.hbm.xml">
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.use_sql_comments">${hibernate.use_sql_comments}</prop>
 				<prop key="hibernate.generate_statistics">${hibernate.generate_statistics}</prop>
 			</props>
-		</property>
-		<property name="eventListeners">
-			<map>
-				<entry key="merge">
-					<bean class="org.springframework.orm.hibernate3.support.IdTransferringMergeEventListener"/>
-				</entry>
-			</map>
 		</property>
 	</bean>
 
 	<!-- Transaction manager for a single Hibernate SessionFactory (alternative to JTA) -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"
 			p:sessionFactory-ref="sessionFactory"/>
 
 	<!-- Transaction manager that delegates to JTA (for a transactional JNDI DataSource) -->
@@ -92,9 +87,6 @@
 	<bean id="jmxExporter" class="org.springframework.jmx.export.MBeanExporter">
 		<property name="autodetectModeName" value="AUTODETECT_MBEAN"/>
 	</bean>
-
-	<!-- Hibernate's JMX statistics service -->
-	<bean name="petclinic:type=HibernateStatistics" class="org.hibernate.jmx.StatisticsService" autowire="byName"/>
 
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
 	
