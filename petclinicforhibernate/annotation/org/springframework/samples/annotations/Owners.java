@@ -1,13 +1,14 @@
 package org.springframework.samples.annotations;
-// Generated 2008-5-8 3:35:49 by Hibernate Tools 3.2.0.b9
+// Generated 2014-7-9 23:01:38 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +22,7 @@ import javax.persistence.Table;
 public class Owners  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String firstName;
      private String lastName;
      private String address;
@@ -32,12 +33,7 @@ public class Owners  implements java.io.Serializable {
     public Owners() {
     }
 
-	
-    public Owners(int id) {
-        this.id = id;
-    }
-    public Owners(int id, String firstName, String lastName, String address, String city, String telephone, Set<Pets> petses) {
-       this.id = id;
+    public Owners(String firstName, String lastName, String address, String city, String telephone, Set<Pets> petses) {
        this.firstName = firstName;
        this.lastName = lastName;
        this.address = address;
@@ -46,16 +42,18 @@ public class Owners  implements java.io.Serializable {
        this.petses = petses;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
+
     
     @Column(name="ID", unique=true, nullable=false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
     
     @Column(name="FIRST_NAME", length=30)
     public String getFirstName() {
@@ -65,6 +63,7 @@ public class Owners  implements java.io.Serializable {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     
     @Column(name="LAST_NAME", length=30)
     public String getLastName() {
@@ -74,6 +73,7 @@ public class Owners  implements java.io.Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
     
     @Column(name="ADDRESS")
     public String getAddress() {
@@ -83,6 +83,7 @@ public class Owners  implements java.io.Serializable {
     public void setAddress(String address) {
         this.address = address;
     }
+
     
     @Column(name="CITY", length=80)
     public String getCity() {
@@ -92,6 +93,7 @@ public class Owners  implements java.io.Serializable {
     public void setCity(String city) {
         this.city = city;
     }
+
     
     @Column(name="TELEPHONE", length=20)
     public String getTelephone() {
@@ -101,7 +103,8 @@ public class Owners  implements java.io.Serializable {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="owners")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="owners")
     public Set<Pets> getPetses() {
         return this.petses;
     }

@@ -1,15 +1,16 @@
 package org.springframework.samples.annotations;
-// Generated 2008-5-8 3:35:49 by Hibernate Tools 3.2.0.b9
+// Generated 2014-7-9 23:01:38 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,35 +22,32 @@ import javax.persistence.Table;
 public class Vets  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String firstName;
      private String lastName;
-     private Set<Specialties> specialtieses = new HashSet<Specialties>(0);
+     private Set<VetSpecialties> vetSpecialtieses = new HashSet<VetSpecialties>(0);
 
     public Vets() {
     }
 
-	
-    public Vets(int id) {
-        this.id = id;
-    }
-    public Vets(int id, String firstName, String lastName, Set<Specialties> specialtieses) {
-       this.id = id;
+    public Vets(String firstName, String lastName, Set<VetSpecialties> vetSpecialtieses) {
        this.firstName = firstName;
        this.lastName = lastName;
-       this.specialtieses = specialtieses;
+       this.vetSpecialtieses = vetSpecialtieses;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
+
     
     @Column(name="ID", unique=true, nullable=false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
     
     @Column(name="FIRST_NAME", length=30)
     public String getFirstName() {
@@ -59,6 +57,7 @@ public class Vets  implements java.io.Serializable {
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     
     @Column(name="LAST_NAME", length=30)
     public String getLastName() {
@@ -68,13 +67,14 @@ public class Vets  implements java.io.Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="vetses")
-    public Set<Specialties> getSpecialtieses() {
-        return this.specialtieses;
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="vets")
+    public Set<VetSpecialties> getVetSpecialtieses() {
+        return this.vetSpecialtieses;
     }
     
-    public void setSpecialtieses(Set<Specialties> specialtieses) {
-        this.specialtieses = specialtieses;
+    public void setVetSpecialtieses(Set<VetSpecialties> vetSpecialtieses) {
+        this.vetSpecialtieses = vetSpecialtieses;
     }
 
 

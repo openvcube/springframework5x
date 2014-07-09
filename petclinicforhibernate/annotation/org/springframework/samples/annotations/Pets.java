@@ -1,14 +1,15 @@
 package org.springframework.samples.annotations;
-// Generated 2008-5-8 3:35:49 by Hibernate Tools 3.2.0.b9
+// Generated 2014-7-9 23:01:38 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -26,9 +27,9 @@ import javax.persistence.TemporalType;
 public class Pets  implements java.io.Serializable {
 
 
-     private int id;
-     private Types types;
+     private Integer id;
      private Owners owners;
+     private Types types;
      private String name;
      private Date birthDate;
      private Set<Visits> visitses = new HashSet<Visits>(0);
@@ -37,39 +38,30 @@ public class Pets  implements java.io.Serializable {
     }
 
 	
-    public Pets(int id, Types types, Owners owners) {
-        this.id = id;
-        this.types = types;
+    public Pets(Owners owners, Types types) {
         this.owners = owners;
+        this.types = types;
     }
-    public Pets(int id, Types types, Owners owners, String name, Date birthDate, Set<Visits> visitses) {
-       this.id = id;
-       this.types = types;
+    public Pets(Owners owners, Types types, String name, Date birthDate, Set<Visits> visitses) {
        this.owners = owners;
+       this.types = types;
        this.name = name;
        this.birthDate = birthDate;
        this.visitses = visitses;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
+
     
     @Column(name="ID", unique=true, nullable=false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="TYPE_ID", nullable=false)
-    public Types getTypes() {
-        return this.types;
-    }
-    
-    public void setTypes(Types types) {
-        this.types = types;
-    }
+
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="OWNER_ID", nullable=false)
     public Owners getOwners() {
@@ -79,6 +71,17 @@ public class Pets  implements java.io.Serializable {
     public void setOwners(Owners owners) {
         this.owners = owners;
     }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="TYPE_ID", nullable=false)
+    public Types getTypes() {
+        return this.types;
+    }
+    
+    public void setTypes(Types types) {
+        this.types = types;
+    }
+
     
     @Column(name="NAME", length=30)
     public String getName() {
@@ -88,6 +91,7 @@ public class Pets  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     @Temporal(TemporalType.DATE)
     @Column(name="BIRTH_DATE", length=0)
     public Date getBirthDate() {
@@ -97,7 +101,8 @@ public class Pets  implements java.io.Serializable {
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="pets")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="pets")
     public Set<Visits> getVisitses() {
         return this.visitses;
     }

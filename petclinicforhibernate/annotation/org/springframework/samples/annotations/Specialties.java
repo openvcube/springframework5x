@@ -1,15 +1,16 @@
 package org.springframework.samples.annotations;
-// Generated 2008-5-8 3:35:49 by Hibernate Tools 3.2.0.b9
+// Generated 2014-7-9 23:01:38 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -21,33 +22,30 @@ import javax.persistence.Table;
 public class Specialties  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String name;
-     private Set<Vets> vetses = new HashSet<Vets>(0);
+     private Set<VetSpecialties> vetSpecialtieses = new HashSet<VetSpecialties>(0);
 
     public Specialties() {
     }
 
-	
-    public Specialties(int id) {
-        this.id = id;
-    }
-    public Specialties(int id, String name, Set<Vets> vetses) {
-       this.id = id;
+    public Specialties(String name, Set<VetSpecialties> vetSpecialtieses) {
        this.name = name;
-       this.vetses = vetses;
+       this.vetSpecialtieses = vetSpecialtieses;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
+
     
     @Column(name="ID", unique=true, nullable=false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
     
     @Column(name="NAME", length=80)
     public String getName() {
@@ -57,13 +55,14 @@ public class Specialties  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-@ManyToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="specialtieses")
-    public Set<Vets> getVetses() {
-        return this.vetses;
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="specialties")
+    public Set<VetSpecialties> getVetSpecialtieses() {
+        return this.vetSpecialtieses;
     }
     
-    public void setVetses(Set<Vets> vetses) {
-        this.vetses = vetses;
+    public void setVetSpecialtieses(Set<VetSpecialties> vetSpecialtieses) {
+        this.vetSpecialtieses = vetSpecialtieses;
     }
 
 

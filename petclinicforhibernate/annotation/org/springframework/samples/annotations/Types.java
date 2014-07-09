@@ -1,13 +1,14 @@
 package org.springframework.samples.annotations;
-// Generated 2008-5-8 3:35:49 by Hibernate Tools 3.2.0.b9
+// Generated 2014-7-9 23:01:38 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,33 +22,30 @@ import javax.persistence.Table;
 public class Types  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String name;
      private Set<Pets> petses = new HashSet<Pets>(0);
 
     public Types() {
     }
 
-	
-    public Types(int id) {
-        this.id = id;
-    }
-    public Types(int id, String name, Set<Pets> petses) {
-       this.id = id;
+    public Types(String name, Set<Pets> petses) {
        this.name = name;
        this.petses = petses;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
+
     
     @Column(name="ID", unique=true, nullable=false)
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
+
     
     @Column(name="NAME", length=80)
     public String getName() {
@@ -57,7 +55,8 @@ public class Types  implements java.io.Serializable {
     public void setName(String name) {
         this.name = name;
     }
-@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="types")
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="types")
     public Set<Pets> getPetses() {
         return this.petses;
     }

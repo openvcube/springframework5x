@@ -8,18 +8,25 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.springframework.orm.hibernate3.HibernateCallback;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import org.springframework.orm.hibernate4.HibernateCallback;
+import org.springframework.orm.hibernate4.support.HibernateDaoSupport;
 import org.springframework.samples.annotations.Owners;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 public class HibernateTemplateOperation extends HibernateDaoSupport implements IOperation {
 
-	protected static final Log log = LogFactory.getLog(HibernateTemplateOperation.class);
+	private static final Log log = LogFactory.getLog(HibernateTemplateOperation.class);
 	
 	/* (non-Javadoc)
 	 * @see annotest.IOperation#testOper()
@@ -27,23 +34,13 @@ public class HibernateTemplateOperation extends HibernateDaoSupport implements I
 	public void testOper(){
 		log.info("testOper().......");
 		
-		Owners own = (Owners)this.getHibernateTemplate().execute(new HibernateCallback(){
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				return session.load(Owners.class, 1);
+		Owners own = (Owners)this.getHibernateTemplate().execute(new HibernateCallback<Owners>(){
+			public Owners doInHibernate(Session session) throws HibernateException {
+				return (Owners)session.load(Owners.class, 1);
 			}
 		});
 		
-		log.info(own);
-		
-		List list = this.getHibernateTemplate().executeFind(new HibernateCallback(){
-			public Object doInHibernate(Session session) throws HibernateException, SQLException {
-				return session.createQuery("from org.springframework.samples.annotations.Owners").list();
-			}
-		});
-		
-		log.info(list);
-		
-				
+		log.info(own);		
 	}
 	
 }
