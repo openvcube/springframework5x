@@ -17,5 +17,7 @@
 	<classpathentry kind="lib" path="/springframework4.0-libs/junit-4.11.jar"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/spring-test-4.0.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/springframework4.0-libs/ojdbc7.jar"/>
+	<classpathentry kind="lib" path="/springframework4.0-libs/ejb-api-3.0.jar"/>
+	<classpathentry kind="lib" path="/springframework4.0-libs/spring-aspects-4.0.6.RELEASE.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>

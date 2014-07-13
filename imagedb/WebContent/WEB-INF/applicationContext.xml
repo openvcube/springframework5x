@@ -30,7 +30,7 @@
 
 	<bean id="imageDatabase" 
 		class="org.springframework.samples.imagedb.DefaultImageDatabase"
-		p:dataSource-ref="dataSource" p:lobHandler-ref="defaultLobHandler"/>
+		p:dataSource-ref="dataSource" p:lobHandler-ref="oracleLobHandler"/>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}"/>

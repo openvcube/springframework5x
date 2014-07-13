@@ -34,16 +34,15 @@ public class MainTestForTransactionTemplate {
 		
 		final Clinic clinic = (Clinic)cbf.getBean("clinicTarget");
 		
-		final TransactionTemplate tt = (TransactionTemplate)cbf.getBean("transactionTemplate");		
+		final TransactionTemplate tt = (TransactionTemplate)cbf.getBean("transactionTemplate");
 
-		List list = (List)tt.execute(new TransactionCallback(){
-			public Object doInTransaction(TransactionStatus status) {				
-				return clinic.findOwners("");
+		List<Owner> list = tt.execute(new TransactionCallback<List<Owner>>(){
+			public List<Owner> doInTransaction(TransactionStatus status) {
+				return (List<Owner>)clinic.findOwners("");
 			}
 		});
 		
-		for(Object owner: list){
-			Owner own = (Owner)owner;
+		for(Owner own: list){
 			log.info(own.getId() + "," + own.getFirstName() + "," + own.getLastName());
 		}
 		

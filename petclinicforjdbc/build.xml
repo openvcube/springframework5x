@@ -1,26 +1,32 @@
 <?xml version="1.0"?>
-<project name="jpetstorefortxadvice" default="compile">
+<project name="petclinicforjdbc" default="compile">
 			
 	<target name="compile">
 		
-		  <taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+		<taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
 		    <classpath>
-		      <pathelement location="D:/aspectj1.6/lib/aspectjtools.jar"/>
+		      <pathelement location="D:/aspectj1.8/lib/aspectjtools.jar"/>
 		    </classpath>
-		  </taskdef>
+		</taskdef>
 		
 		<delete dir="dest"/>
 		<mkdir dir="dest"/>
 		
-		<iajc destdir="dest" source="1.6" aspectpath="lib/spring-aspects.jar">
+		<iajc destdir="dest" source="1.6" aspectpath="../springframework4.0-libs/spring-aspects-4.0.6.RELEASE.jar">
 			<sourceroots>
-					<pathelement location="test/test" />
+					<pathelement location="test/test"/>
 			</sourceroots>
 			<classpath>
-				   <pathelement location="context/WEB-INF/lib/commons-logging.jar"/>
-	  			   <pathelement location="context/WEB-INF/lib/log4j-1.2.15.jar"/>
-				   <pathelement location="context/WEB-INF/lib/spring.jar"/>
-				   <pathelement location="D:/aspectj1.6/lib/aspectjrt.jar"/>
+				   <pathelement location="WebContent/WEB-INF/lib/commons-logging-1.1.3.jar"/>
+	  			   <pathelement location="WebContent/WEB-INF/lib/log4j-1.2.17.jar"/>
+				   <pathelement location="WebContent/WEB-INF/lib/spring-aop-4.0.6.RELEASE.jar"/>
+				   <pathelement location="WebContent/WEB-INF/lib/spring-tx-4.0.6.RELEASE.jar"/>
+				   <pathelement location="WebContent/WEB-INF/lib/spring-beans-4.0.6.RELEASE.jar"/>
+				   <pathelement location="WebContent/WEB-INF/lib/spring-context-4.0.6.RELEASE.jar"/>
+				   <pathelement location="WebContent/WEB-INF/lib/spring-core-4.0.6.RELEASE.jar"/>
+				   <pathelement location="WebContent/WEB-INF/lib/spring-jdbc-4.0.6.RELEASE.jar"/>
+				   <pathelement location="../springframework4.0-libs/persistence.jar"/>
+				   <pathelement location="D:/aspectj1.8/lib/aspectjrt.jar"/>
 			</classpath>
 		</iajc>
 		

@@ -27,7 +27,7 @@
 		class="org.springframework.samples.petclinic.jdbc.SimpleJdbcClinic"/>
 
 	<tx:annotation-driven/>
-
+	
 	<context:annotation-config/>
 
 </beans>

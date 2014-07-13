@@ -30,7 +30,7 @@ public class TransactionOpera {
 		
 	public void updateDB(DataSource ds) {
 		try{
-			//借助于Spring提供的DataSourceUtils实用类，
+			//借助于Spring Framework提供的DataSourceUtils实用类，
 			//获得当前事务已经征集的Connection对象
 			Connection conn = DataSourceUtils.getConnection(ds);
 			Statement stat = conn.createStatement();
