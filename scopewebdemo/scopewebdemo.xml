@@ -1,2 +1,1 @@
-<Context docBase="D:\eclipse\workspace\scopewebdemo\context"
-         path="/scopewebdemo" />	
+<Context path="scopewebdemo" reloadable="false" docBase="D:\sts-bundle\workspace\springframework41\scopewebdemo\WebContent" workDir="D:\sts-bundle\workspace\springframework41\scopewebdemo\work" />
