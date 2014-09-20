@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="common" template="/WEB-INF/pages/common.jsp">
+		<put-attribute name="header" value="/WEB-INF/pages/header.jsp" />
+		<put-attribute name="content" value="" />
+		<put-attribute name="footer" value="/WEB-INF/pages/footer.jsp" />
+	</definition>
+
+	<definition name="imageList" extends="common">
+		<put-attribute name="content"
+			value="/WEB-INF/pages/imageList.jsp" />
+	</definition>
+
+</tiles-definitions>

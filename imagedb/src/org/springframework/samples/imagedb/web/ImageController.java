@@ -34,7 +34,8 @@ public class ImageController {
 	}
 
 	@RequestMapping("/imageContent")
-	public void streamImageContent(@RequestParam("name") String name, OutputStream outputStream) throws IOException {
+	public void streamImageContent(@RequestParam("name") String name, 
+			OutputStream outputStream) throws IOException {
 		this.imageDatabase.streamImage(name, outputStream);
 	}
 
