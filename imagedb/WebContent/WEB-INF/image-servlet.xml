@@ -17,6 +17,14 @@
 
 	<!-- MultiActionController that defines user interface actions as separate methods -->
 	<bean id="imageController" class="org.springframework.samples.imagedb.web.ImageController"/>
+	
+	<!--  
+	<mvc:annotation-driven/>
+	
+	<context:component-scan base-package="org.springframework.samples.imagedb" use-default-filters="false">
+		<context:include-filter type="regex" expression=".*.web.*Controller" />
+	</context:component-scan>
+	-->
 
 	<!-- MultipartResolver for parsing file uploads, implementation for Commons FileUpload -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>

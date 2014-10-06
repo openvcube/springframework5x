@@ -3,6 +3,10 @@
  */
 package org.springframework.samples.imagedb.web;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,4 +31,14 @@ public class ResponseBodyController {
 	public String sayHelloToImagedb(){
 		return "hello, imagedb!";
 	}
+
+	@RequestMapping(value="/jsonHelloToImagedb", method=RequestMethod.GET, 
+			produces=MediaType.APPLICATION_JSON_VALUE)	
+	public Map<String, String> sayJsonHelloToImagedb(){
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("key1", "value1");
+		map.put("key2", "value2");
+		return map;
+	}
+
 }
