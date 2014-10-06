@@ -14,8 +14,7 @@
 	<bean id="clinic" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager"/>
 		<property name="target">
-			<bean class="org.springframework.samples.petclinic.jpa.JpaTemplateClinic"
-				autowire="autodetect" />
+			<bean class="org.springframework.samples.petclinic.jpa.JpaTemplateClinic"/>
 		</property>
 		<property name="transactionAttributes">
 			<props>
