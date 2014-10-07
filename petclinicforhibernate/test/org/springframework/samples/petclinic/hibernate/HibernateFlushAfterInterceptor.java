@@ -6,28 +6,27 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.orm.hibernate3.SessionFactoryUtils;
 
 /**
  * 
- * Title:¸¨Öú¼¯³É²âÊÔ£¬Spring AOPÀ¹½ØÆ÷¡£
- * Description: ±£Ö¤ÔÚÍË³öÄ¿±ê²âÊÔ·½·¨ºó£¬ÄÜ¹»½«Hibernate SessionÖĞµÄHQLÍ¬²½µ½RDBMS
- *    Èç¹û²âÊÔ·½·¨ÔÚÖ´ĞĞÍêÄ¿±ê²âÊÔ·½·¨ºóÊ¹ÓÃµ½JDBC£¬ÔòÕâÒ»À¹½ØÆ÷±Ø²»¿ÉÉÙ¡£
+ * Title:è¾…åŠ©é›†æˆæµ‹è¯•ï¼ŒSpring AOPæ‹¦æˆªå™¨ã€‚
+ * Description: ä¿è¯åœ¨é€€å‡ºç›®æ ‡æµ‹è¯•æ–¹æ³•åï¼Œèƒ½å¤Ÿå°†Hibernate Sessionä¸­çš„HQLåŒæ­¥åˆ°RDBMS
+ *    å¦‚æœæµ‹è¯•æ–¹æ³•åœ¨æ‰§è¡Œå®Œç›®æ ‡æµ‹è¯•æ–¹æ³•åä½¿ç”¨åˆ°JDBCï¼Œåˆ™è¿™ä¸€æ‹¦æˆªå™¨å¿…ä¸å¯å°‘ã€‚
  * 
  */
 public class HibernateFlushAfterInterceptor implements MethodInterceptor {
 
     protected static final Log log = LogFactory.getLog(HibernateFlushAfterInterceptor.class);
 
-    // ×¢ÈëHibernate 3.x SessionFactory
+    // æ³¨å…¥Hibernate 4.x SessionFactory
     private SessionFactory sessionFactory;
 
     public Object invoke(MethodInvocation invocation) throws Throwable {
         log.info("Entering HibernateFlushAfterInterceptor()...." + invocation.getClass());
-        //À¹½ØÁ´¼ÌĞø
+        //æ‹¦æˆªé“¾ç»§ç»­
         Object object = invocation.proceed();
-        //È·±£flush()·½·¨ÔÚÒµÎñ·½·¨±»µ÷ÓÃºó´¥·¢
-        Session session = SessionFactoryUtils.getSession(this.sessionFactory, false);
+        //ç¡®ä¿flush()æ–¹æ³•åœ¨ä¸šåŠ¡æ–¹æ³•è¢«è°ƒç”¨åè§¦å‘
+        Session session = this.sessionFactory.getCurrentSession();
         if (session != null) {
             log.info("Running session.flush()");
             session.flush();

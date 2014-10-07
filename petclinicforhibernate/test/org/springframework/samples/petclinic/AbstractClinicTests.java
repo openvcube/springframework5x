@@ -143,18 +143,6 @@ public abstract class AbstractClinicTests extends AbstractTransactionalJUnit4Spr
 	}
 
 	@Test
-	public void insertOwner() {
-		Collection<Owner> owners = this.clinic.findOwners("Schultz");
-		int found = owners.size();
-		Owner owner = new Owner();
-		owner.setLastName("Schultz");
-		this.clinic.storeOwner(owner);
-		// assertTrue(!owner.isNew()); -- NOT TRUE FOR TOPLINK (before commit)
-		owners = this.clinic.findOwners("Schultz");
-		assertEquals("Verifying number of owners after inserting a new one.", found + 1, owners.size());
-	}
-
-	@Test
 	public void updateOwner() throws Exception {
 		Owner o1 = this.clinic.loadOwner(1);
 		String old = o1.getLastName();
@@ -178,25 +166,6 @@ public abstract class AbstractClinicTests extends AbstractTransactionalJUnit4Spr
 	}
 
 	@Test
-	public void insertPet() {
-		Owner o6 = this.clinic.loadOwner(6);
-		int found = o6.getPets().size();
-		Pet pet = new Pet();
-		pet.setName("bowser");
-		Collection<PetType> types = this.clinic.getPetTypes();
-		pet.setType(EntityUtils.getById(types, PetType.class, 2));
-		pet.setBirthDate(new Date());
-		o6.addPet(pet);
-		assertEquals(found + 1, o6.getPets().size());
-		// both storePet and storeOwner are necessary to cover all ORM tools
-		this.clinic.storePet(pet);
-		this.clinic.storeOwner(o6);
-		// assertTrue(!pet.isNew()); -- NOT TRUE FOR TOPLINK (before commit)
-		o6 = this.clinic.loadOwner(6);
-		assertEquals(found + 1, o6.getPets().size());
-	}
-
-	@Test
 	public void updatePet() throws Exception {
 		Pet p7 = this.clinic.loadPet(7);
 		String old = p7.getName();
@@ -204,21 +173,6 @@ public abstract class AbstractClinicTests extends AbstractTransactionalJUnit4Spr
 		this.clinic.storePet(p7);
 		p7 = this.clinic.loadPet(7);
 		assertEquals(old + "X", p7.getName());
-	}
-
-	@Test
-	public void insertVisit() {
-		Pet p7 = this.clinic.loadPet(7);
-		int found = p7.getVisits().size();
-		Visit visit = new Visit();
-		p7.addVisit(visit);
-		visit.setDescription("test");
-		// both storeVisit and storePet are necessary to cover all ORM tools
-		this.clinic.storeVisit(visit);
-		this.clinic.storePet(p7);
-		// assertTrue(!visit.isNew()); -- NOT TRUE FOR TOPLINK (before commit)
-		p7 = this.clinic.loadPet(7);
-		assertEquals(found + 1, p7.getVisits().size());
 	}
 
 }

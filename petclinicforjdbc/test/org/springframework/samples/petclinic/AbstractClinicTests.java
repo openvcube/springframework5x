@@ -1,16 +1,21 @@
 package org.springframework.samples.petclinic;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Collection;
 import java.util.Date;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.util.EntityUtils;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.transaction.AfterTransaction;
+import org.springframework.test.context.transaction.BeforeTransaction;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * <p>
@@ -83,8 +88,31 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 @ContextConfiguration
 public abstract class AbstractClinicTests extends AbstractTransactionalJUnit4SpringContextTests {
 
+	private static final Log log = LogFactory.getLog(AbstractClinicTests.class);
+
 	@Autowired
 	protected Clinic clinic;
+
+	@BeforeTransaction
+	public void bt() {
+		log.info("before transaction");
+	}
+
+	@AfterTransaction
+	public void at() {
+		log.info("after transaction");
+	}
+
+	@Test
+	public void findOwnersForTest() {
+		this.deleteFromTables("visits","pets","owners");
+		this.executeSqlScript("org/springframework/samples/petclinic/jdbc/owners.sql", 
+			false);
+		Collection owners = this.clinic.findOwners("Luo");
+		assertEquals(2, owners.size());
+		owners = this.clinic.findOwners("ShiFei");
+		assertEquals(0, owners.size());
+	}
 
 	@Test
 	public void getVets() {
@@ -103,7 +131,7 @@ public abstract class AbstractClinicTests extends AbstractTransactionalJUnit4Spr
 		assertEquals("surgery", (v2.getSpecialties().get(1)).getName());
 	}
 
-	@Test
+	@Test	
 	public void getPetTypes() {
 		Collection<PetType> petTypes = this.clinic.getPetTypes();
 		assertEquals("JDBC query must show the same number of pet types", super.countRowsInTable("TYPES"),
@@ -117,12 +145,13 @@ public abstract class AbstractClinicTests extends AbstractTransactionalJUnit4Spr
 	@Test
 	public void findOwners() {
 		Collection<Owner> owners = this.clinic.findOwners("Davis");
-		assertEquals(2, owners.size());
+		assertEquals(1, owners.size());
 		owners = this.clinic.findOwners("Daviss");
 		assertEquals(0, owners.size());
 	}
 
 	@Test
+	@Transactional(readOnly=true)
 	public void loadOwner() {
 		Owner o1 = this.clinic.loadOwner(1);
 		assertTrue(o1.getLastName().startsWith("Franklin"));

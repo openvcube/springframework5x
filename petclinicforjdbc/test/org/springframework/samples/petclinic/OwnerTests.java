@@ -35,10 +35,15 @@ public class OwnerTests {
 		ReflectionTestUtils.setField(owner, "address", 
 					"GuangZhou1", String.class);
 		log.info(owner.getAddress());
+		log.info(ReflectionTestUtils.getField(owner, "address"));
+		//可以将address替换成getAddress
+		log.info(ReflectionTestUtils.invokeGetterMethod(owner, "address"));
+		log.info(ReflectionTestUtils.invokeMethod(owner, "getAddress"));
 		//可以将address替换成setAddress
 		ReflectionTestUtils.invokeSetterMethod(owner, "address", 
 					"GuangZhou2", String.class);
 		log.info(owner.getAddress());
+		
 	}
 
 }

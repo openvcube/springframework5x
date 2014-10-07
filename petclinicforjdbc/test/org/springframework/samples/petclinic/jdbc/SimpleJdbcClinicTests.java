@@ -2,6 +2,7 @@ package org.springframework.samples.petclinic.jdbc;
 
 import org.springframework.samples.petclinic.AbstractClinicTests;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.transaction.TransactionConfiguration;
 
 /**
  * <p>

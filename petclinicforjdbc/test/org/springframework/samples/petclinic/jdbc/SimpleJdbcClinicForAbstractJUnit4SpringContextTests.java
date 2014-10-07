@@ -1,3 +1,6 @@
+/**
+ * Copyright(c) http://www.open-v.com
+ */
 package org.springframework.samples.petclinic.jdbc;
 
 import static org.junit.Assert.assertNotNull;
@@ -12,14 +15,21 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 /**
  * 
- * @author worldheart
- *
+ * <pre>
+ * 程序的中文名称。
+ * </pre>
+ * @author http://www.open-v.com
+ * @version 1.00.00
+ * <pre>
+ * 修改记录
+ *    修改后版本:     修改人：  修改日期:     修改内容: 
+ * </pre>
  */
 @ContextConfiguration
 public class SimpleJdbcClinicForAbstractJUnit4SpringContextTests 
 	extends AbstractJUnit4SpringContextTests{
 
-	protected static final Log log = LogFactory.getLog(
+	private static final Log log = LogFactory.getLog(
 			SimpleJdbcClinicForAbstractJUnit4SpringContextTests.class);
 	
 	@Autowired
