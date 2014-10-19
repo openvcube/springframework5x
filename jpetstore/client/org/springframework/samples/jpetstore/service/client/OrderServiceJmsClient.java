@@ -4,11 +4,11 @@ import java.util.Iterator;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.mybatis.jpetstore.domain.LineItem;
+import org.mybatis.jpetstore.domain.Order;
+import org.mybatis.jpetstore.service.OrderService;
 import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.samples.jpetstore.domain.LineItem;
-import org.springframework.samples.jpetstore.domain.Order;
-import org.springframework.samples.jpetstore.domain.logic.OrderService;
 
 /**
  * 

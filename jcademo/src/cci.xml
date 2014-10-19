@@ -42,7 +42,6 @@
 	<bean id="personService" 
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager"/>
-		<property name="target" ref="personServiceTarget"/>
 		<property name="transactionAttributes">
 			<props>
 				<prop key="insert*">PROPAGATION_REQUIRED</prop>
