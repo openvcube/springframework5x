@@ -20,5 +20,10 @@
 	<classpathentry kind="lib" path="/springframework4.1-libs/ejb-api-3.0.jar"/>
 	<classpathentry kind="lib" path="/springframework4.1-libs/spring-aspects-4.1.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="/springframework4.1-libs/hamcrest-all-1.3.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/servlet-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/jasper.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/jsp-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/el-api.jar"/>
+	<classpathentry kind="var" path="TOMCAT_HOME/lib/annotations-api.jar"/>
 	<classpathentry kind="output" path="WebContent/WEB-INF/classes"/>
 </classpath>
