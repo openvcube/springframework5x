@@ -34,10 +34,10 @@ public class ApplicationContextConstructDemo1 {
 		ac = new ClassPathXmlApplicationContext("resource2.xml", TestBean.class);
 		
 		//通过URL定位resource1.xml
-		ac= new ClassPathXmlApplicationContext("file:D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+		ac= new ClassPathXmlApplicationContext("file:D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 
 		//直接传入文件路径
-		ac = new FileSystemXmlApplicationContext("D:/sts-bundle/workspace/springframework40/resourcedemo/src/test/resource2.xml");
+		ac = new FileSystemXmlApplicationContext("D:/sts-bundle/workspace/springframework42/resourcedemo/src/test/resource2.xml");
 		
 		//通过classpath定位resource2.xml
 		ac = new FileSystemXmlApplicationContext("classpath:test/resource2.xml");

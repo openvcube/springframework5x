@@ -34,21 +34,21 @@ public class ResourceDemo2 {
 		res = ac.getResource("classpath:resource1.xml");
 		
 		//获得UrlResource
-		res = ac.getResource("file:D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+		res = ac.getResource("file:D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 		
 		//获得ClassPathResource
-		res = ac.getResource("D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+		res = ac.getResource("D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 		
-		ac = new FileSystemXmlApplicationContext("file:D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+		ac = new FileSystemXmlApplicationContext("file:D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 		
 		//获得UrlResource
-		res = ac.getResource("file:D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+		res = ac.getResource("file:D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 		
 		//获得ClassPathResource
 		res = ac.getResource("classpath:resource1.xml");
 		
 		//获得FileSystemResource
-		res = ac.getResource("D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+		res = ac.getResource("D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 	}
 	
 }

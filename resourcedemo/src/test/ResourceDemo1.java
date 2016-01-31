@@ -42,17 +42,17 @@ public class ResourceDemo1 {
 		new XmlBeanFactory(res).getBean("testBean2");
 
 		//直接传入文件路径
-		res = new FileSystemResource("D:/sts-bundle/workspace/springframework40/resourcedemo/src/test/resource2.xml");
+		res = new FileSystemResource("D:/sts-bundle/workspace/springframework42/resourcedemo/src/test/resource2.xml");
 		new XmlBeanFactory(res).getBean("testBean2");
 		
 		//将构建的File Handler传入到FileSystemResource中
-		File file = new File("D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+		File file = new File("D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 		res = new FileSystemResource(file);
 		new XmlBeanFactory(res).getBean("testBean1");
 		
 		try{
 			//支持file:、http:、ftp:、等前缀，这些都是标准的URL格式
-			res = new UrlResource("file:D:/sts-bundle/workspace/springframework40/resourcedemo/src/resource1.xml");
+			res = new UrlResource("file:D:/sts-bundle/workspace/springframework42/resourcedemo/src/resource1.xml");
 			new XmlBeanFactory(res).getBean("testBean1");
 		} catch(MalformedURLException mue){
 			log.error("", mue);
