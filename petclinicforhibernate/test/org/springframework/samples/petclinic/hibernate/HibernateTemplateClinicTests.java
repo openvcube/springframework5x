@@ -36,15 +36,18 @@ public class HibernateTemplateClinicTests extends AbstractTransactionalJUnit4Spr
 		Owner owner = new Owner();
 		owner.setLastName("Schultz1");
 		this.clinic.storeOwnerSave(owner);
-		assertEquals(1, this.jdbcTemplate.queryForInt("select count(*) from owners where city = 'gz'"));
+		assertEquals(1, this.jdbcTemplate.queryForObject("select count(*) from owners where city = 'gz'", Integer.class)
+				.intValue());
 //		owner = new Owner();
 //		owner.setLastName("Schultz2");
 //		this.clinic.storeOwnerSave(owner);
-//		assertEquals(2, this.jdbcTemplate.queryForInt("select count(*) from owners where city = 'gz'"));
+//		assertEquals(2, this.jdbcTemplate.queryForObject("select count(*) from owners where city = 'gz'", Integer.class)
+//				.intValue());
 //		owner = new Owner();
 //		owner.setLastName("Schultz3");
 //		this.clinic.storeOwnerSave(owner);
-//		assertEquals(3, this.jdbcTemplate.queryForInt("select count(*) from owners where city = 'gz'"));
+//		assertEquals(3, this.jdbcTemplate.queryForObject("select count(*) from owners where city = 'gz'", Integer.class)
+//				.intValue());
 	}
 
 }

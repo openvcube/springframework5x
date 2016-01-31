@@ -13,13 +13,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.jmx.export.annotation.ManagedOperation;
 import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.orm.ObjectRetrievalFailureException;
@@ -97,20 +96,20 @@ public class SimpleJdbcClinic implements Clinic, SimpleJdbcClinicMBean {
 			this.vets
 					.addAll(this.namedParameterJdbcTemplate
 							.query("SELECT id, first_name, last_name FROM vets ORDER BY last_name,first_name",
-									ParameterizedBeanPropertyRowMapper
+									BeanPropertyRowMapper
 											.newInstance(Vet.class)));
 
 			// Retrieve the list of all possible specialties.
 			final List<Specialty> specialties = this.namedParameterJdbcTemplate.query(
 					"SELECT id, name FROM specialties",
-					ParameterizedBeanPropertyRowMapper
+					BeanPropertyRowMapper
 							.newInstance(Specialty.class));
 
 			// Build each vet's list of specialties.
 			for (Vet vet : this.vets) {
 				final List<Integer> vetSpecialtiesIds = this.namedParameterJdbcTemplate.getJdbcOperations()
 						.query("SELECT specialty_id FROM vet_specialties WHERE vet_id=?",
-								new ParameterizedRowMapper<Integer>() {
+								new RowMapper<Integer>() {
 									public Integer mapRow(ResultSet rs, int row)
 											throws SQLException {
 										return Integer.valueOf(rs.getInt(1));
@@ -141,7 +140,7 @@ public class SimpleJdbcClinic implements Clinic, SimpleJdbcClinicMBean {
 	public Collection<PetType> getPetTypes() throws DataAccessException {
 		return this.namedParameterJdbcTemplate.query(
 				"SELECT id, name FROM types ORDER BY name",
-				ParameterizedBeanPropertyRowMapper.newInstance(PetType.class));
+				BeanPropertyRowMapper.newInstance(PetType.class));
 	}
 
 	/**
@@ -155,7 +154,7 @@ public class SimpleJdbcClinic implements Clinic, SimpleJdbcClinicMBean {
 			throws DataAccessException {
 		List<Owner> owners = this.namedParameterJdbcTemplate.getJdbcOperations()
 				.query("SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name like ?",
-						ParameterizedBeanPropertyRowMapper
+						BeanPropertyRowMapper
 								.newInstance(Owner.class), lastName + "%");
 		loadOwnersPetsAndVisits(owners);
 		return owners;
@@ -173,7 +172,7 @@ public class SimpleJdbcClinic implements Clinic, SimpleJdbcClinicMBean {
 			owner = this.namedParameterJdbcTemplate.getJdbcOperations()
 					.queryForObject(
 							"SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE id=?",
-							ParameterizedBeanPropertyRowMapper
+							BeanPropertyRowMapper
 									.newInstance(Owner.class), id);
 		} catch (EmptyResultDataAccessException ex) {
 			throw new ObjectRetrievalFailureException(Owner.class, new Integer(
@@ -275,7 +274,7 @@ public class SimpleJdbcClinic implements Clinic, SimpleJdbcClinicMBean {
 	private void loadVisits(JdbcPet pet) {
 		final List<Visit> visits = this.namedParameterJdbcTemplate.getJdbcOperations()
 				.query("SELECT id, visit_date, description FROM visits WHERE pet_id=?",
-						new ParameterizedRowMapper<Visit>() {
+						new RowMapper<Visit>() {
 							public Visit mapRow(ResultSet rs, int row)
 									throws SQLException {
 								Visit visit = new Visit();
@@ -327,7 +326,7 @@ public class SimpleJdbcClinic implements Clinic, SimpleJdbcClinicMBean {
 	 * {@link ResultSet} to the corresponding properties of the {@link JdbcPet}
 	 * class.
 	 */
-	private class JdbcPetRowMapper implements ParameterizedRowMapper<JdbcPet> {
+	private class JdbcPetRowMapper implements RowMapper<JdbcPet> {
 
 		public JdbcPet mapRow(ResultSet rs, int rownum) throws SQLException {
 			JdbcPet pet = new JdbcPet();

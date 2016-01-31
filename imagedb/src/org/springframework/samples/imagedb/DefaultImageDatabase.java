@@ -11,7 +11,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.LobRetrievalFailureException;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.AbstractLobCreatingPreparedStatementCallback;
 import org.springframework.jdbc.core.support.AbstractLobStreamingResultSetExtractor;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
@@ -51,7 +51,7 @@ public class DefaultImageDatabase extends JdbcDaoSupport implements ImageDatabas
 	public List<ImageDescriptor> getImages() throws DataAccessException {
 		return getJdbcTemplate().query(
 		    "SELECT image_name, description FROM imagedb",
-		    new ParameterizedRowMapper<ImageDescriptor>() {
+		    new RowMapper<ImageDescriptor>() {
 			    public ImageDescriptor mapRow(ResultSet rs, int rowNum) throws SQLException {
 				    String name = rs.getString(1);
 				    String description = lobHandler.getClobAsString(rs, 2);
