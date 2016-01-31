@@ -2,11 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/springframework4.1-libs/commons-logging-1.1.3.jar"/>
-	<classpathentry kind="lib" path="/springframework4.1-libs/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="/springframework4.1-libs/spring-beans-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/springframework4.1-libs/spring-context-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/springframework4.1-libs/spring-core-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="/springframework4.1-libs/spring-expression-4.1.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/springframework-libs/commons-logging-1.1.3.jar"/>
+	<classpathentry kind="lib" path="/springframework-libs/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="/springframework-libs/spring-beans-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/springframework-libs/spring-context-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/springframework-libs/spring-core-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="/springframework-libs/spring-expression-4.2.4.RELEASE.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
